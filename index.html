@@ -15,7 +15,7 @@
     --bg: #000000;
     --green: #4ade80;
     --coral: #ff6b5b;
-    --lavender: #c4b5fd;
+    --pink:#f9a8d4;
     --text: #e2e8f0;
     --muted: #94a3b8;
     --border: rgba(196,181,253,0.15);
@@ -153,7 +153,7 @@
     max-width: 520px;
     animation: fadein 0.7s 0.2s ease both;
   }
-  .hero-subtitle em { color: var(--lavender); font-style: normal; }
+  .hero-subtitle em { color: var(--pink); font-style: normal; }
 
   .hero-links {
     display: flex;
@@ -179,7 +179,7 @@
   }
   .btn:hover { transform: translateY(-2px); opacity: 0.88; }
   .btn-primary { background: var(--green); color: #0a1a0e; font-weight: 700; }
-  .btn-ghost { background: transparent; color: var(--lavender); border: 1.5px solid rgba(196,181,253,0.35); }
+  .btn-ghost { background: transparent; color: var(--pink); border: 1.5px solid rgba(196,181,253,0.35); }
 
   .terminal-bar {
     margin-top: 2.5rem;
@@ -195,7 +195,7 @@
   }
   .terminal-bar .t-green { color: var(--green); }
   .terminal-bar .t-coral { color: var(--coral); }
-  .terminal-bar .t-lav { color: var(--lavender); }
+  .terminal-bar .t-pink { color: var(--pink); }
   .terminal-bar .t-blue { color: #60a5fa; }
   .terminal-bar .t-yellow { color: gold; }
   .terminal-bar div { margin-bottom: 0.3rem; }
@@ -261,7 +261,7 @@
   }
   .tag-green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.06); }
   .tag-coral { color: var(--coral); border-color: rgba(255,107,91,0.3); background: rgba(255,107,91,0.06); }
-  .tag-lav { color: var(--lavender); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.06); }
+  .tag-hpink { color: var(--pink); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.06); }
   .tag-teal { color: #5eead4; border-color: rgba(94,234,212,0.3); background: rgba(94,234,212,0.06); }
   .tag-pink { color: #f9a8d4; border-color: rgba(249,168,212,0.3); background: rgba(249,168,212,0.06); }
   .tag-gold { color: #eed024; border-color: #7e7235; background: #110f03; }
@@ -281,7 +281,7 @@
   }
 
   .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.92rem; }
-  .about-text p em { color: var(--lavender); font-style: normal; }
+  .about-text p em { color: var(--pink); font-style: normal; }
 
   .skills-grid { display: flex; flex-direction: column; gap: 0.85rem; }
 
@@ -346,7 +346,7 @@
 
   .exp-org {
     font-size: 0.8rem;
-    color: var(--lavender);
+    color: var(--pink);
     margin-bottom: 0.6rem;
   }
 
@@ -397,7 +397,7 @@
 
   .card-green::before { background: var(--green); }
   .card-coral::before { background: var(--coral); }
-  .card-lav::before { background: var(--lavender); }
+  .card-pink::before { background: var(--pink); }
   .card-teal::before { background: #5eead4; }
   .card-pink::before { background: #f9a8d4; }
   .card-yellow::before { background: gold; }
@@ -415,7 +415,7 @@
   }
   .sigil-green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.08); }
   .sigil-coral { color: var(--coral); border-color: rgba(255,107,91,0.3); background: rgba(255,107,91,0.08); }
-  .sigil-lav { color: var(--lavender); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.08); }
+  .sigil-hpink { color: var(--pink); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.08); }
   .sigil-teal { color: #5eead4; border-color: rgba(94,234,212,0.3); background: rgba(94,234,212,0.08); }
   .sigil-pink { color: #f9a8d4; border-color: rgba(249,168,212,0.3); background: rgba(249,168,212,0.08); }
   .sigil-yellow { color: gold; border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.08); }
@@ -595,6 +595,7 @@
     <li><a href="#experience">experience</a></li>
     <li><a href="#projects">projects</a></li>
     <li><a href="#" id="openContact">contact</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
@@ -809,9 +810,9 @@
       </div>
     </div>
 
-    <div class="project-card card-lav">
+    <div class="project-card card-pink">
       <div class="project-header">
-        <div class="project-sigil sigil-lav">▲</div>
+        <div class="project-sigil sigil-hpink">▲</div>
         <div>
           <div class="project-name">The Floor is Lava!!!</div>
           <div class="project-type">Isometric Route Planning Sim</div>
@@ -820,10 +821,10 @@
       <img src="floor_is_lava.PNG" alt="The Floor is Lava" class="project-img" />
       <div class="project-desc">Tile-based isometric GPS sim by Reptile Dysfunction (Group 77). Dijkstra's + A* with real-time comparison, Perlin noise, procedural generation, custom pixel art, walking animation, and lava.</div>
       <div class="project-stack">
-        <span class="tag tag-lav">C++</span>
-        <span class="tag tag-lav">SFML</span>
-        <span class="tag tag-lav">Algorithms</span>
-        <span class="tag tag-lav">Pixel Art</span>
+        <span class="tag tag-pink">C++</span>
+        <span class="tag tag-pink">SFML</span>
+        <span class="tag tag-pink">Algorithms</span>
+        <span class="tag tag-pink">Pixel Art</span>
       </div>
       <div class="project-links">
         <a class="proj-link" href="https://github.com/njneered/lava" target="_blank">github ↗</a>
@@ -838,6 +839,7 @@
           <div class="project-type">Classic Rebuilt</div>
         </div>
       </div>
+      <img src="minesweeper.jpg" alt="Minesweeper" class="project-img" />
       <div class="project-desc">A classic rebuilt from scratch. Clean logic, satisfying reveals, and the eternal anxiety of guessing the last tile.</div>
       <div class="project-stack">
         <span class="tag tag-teal">C++</span>
