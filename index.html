@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NJ Lacambra — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0b1a;
+    --green: #4ade80;
+    --coral: #ff6b5b;
+    --lavender: #c4b5fd;
+    --text: #f0eaff;
+    --muted: #8b7da8;
+    --border: rgba(196,181,253,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(14,11,26,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(74,222,128,0.12);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo::before { content: '> '; color: var(--muted); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 2.5rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-inner { width: 100%; }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    border: 1px solid rgba(74,222,128,0.4);
+    border-radius: 2px;
+    padding: 3px 10px;
+    letter-spacing: 0.12em;
+    margin-bottom: 1.5rem;
+    animation: fadein 0.6s ease both;
+    background: rgba(74,222,128,0.05);
+  }
+
+  .prompt-line {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    animation: fadein 0.6s 0.05s ease both;
+  }
+  .prompt-line span { color: var(--green); }
+
+  .hero-name {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--text);
+    animation: fadein 0.7s 0.1s ease both;
+  }
+  .hero-name .accent { color: var(--green); transition: opacity 0.3s ease; }
+
+  .cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    background: var(--green);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+    border-radius: 1px;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .hero-subtitle {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 520px;
+    animation: fadein 0.7s 0.2s ease both;
+  }
+  .hero-subtitle em { color: var(--lavender); font-style: normal; }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    animation: fadein 0.7s 0.3s ease both;
+  }
+
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 1.3rem;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+  }
+  .btn:hover { transform: translateY(-2px); opacity: 0.88; }
+  .btn-primary { background: var(--green); color: #0a1a0e; font-weight: 700; }
+  .btn-ghost { background: transparent; color: var(--lavender); border: 1.5px solid rgba(196,181,253,0.35); }
+
+  .terminal-bar {
+    margin-top: 2.5rem;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(74,222,128,0.15);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    max-width: 560px;
+    animation: fadein 0.7s 0.4s ease both;
+  }
+  .terminal-bar .t-green { color: var(--green); }
+  .terminal-bar .t-coral { color: var(--coral); }
+  .terminal-bar .t-lav { color: var(--lavender); }
+  .terminal-bar .t-blue {color: #60a5fa; }
+  .terminal-bar .t-yellow {color:gold}
+  .terminal-bar div { margin-bottom: 0.3rem; }
+  .terminal-bar div:last-child { margin-bottom: 0; }
+
+  /* SHARED */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+  .tag-green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.06); }
+  .tag-coral { color: var(--coral); border-color: rgba(255,107,91,0.3); background: rgba(255,107,91,0.06); }
+  .tag-lav { color: var(--lavender); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.06); }
+  .tag-teal { color: #5eead4; border-color: rgba(94,234,212,0.3); background: rgba(94,234,212,0.06); }
+  .tag-pink { color: #f9a8d4; border-color: rgba(249,168,212,0.3); background: rgba(249,168,212,0.06); }
+  .tag-gold {color: #eed024; border-color: #7e7235; background: #110f03}
+  .tag-blue {color: #60a5fa; border-color: #194e8b; background: #172636}
+
+  /* ABOUT */
+  #about {
+    padding: 6rem 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.92rem; }
+  .about-text p em { color: var(--lavender); font-style: normal; }
+
+  .skills-grid { display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .skill-item {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(74,222,128,0.1);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+  }
+
+  .skill-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  /* EXPERIENCE */
+  #experience {
+    padding: 2rem 2.5rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .exp-list { display: flex; flex-direction: column; gap: 1rem; }
+
+  .exp-card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(74,222,128,0.1);
+    border-left: 2px solid var(--green);
+    border-radius: 0 4px 4px 0;
+    padding: 1rem 1.25rem;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .exp-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--green);
+    white-space: nowrap;
+    opacity: 0.8;
+  }
+
+  .exp-org {
+    font-size: 0.8rem;
+    color: var(--lavender);
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* PROJECTS */
+  #projects {
+    padding: 2rem 2.5rem 6rem;
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.1rem;
+    margin-top: 0.5rem;
+  }
+
+  .project-card {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(74,222,128,0.1);
+    border-radius: 5px;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1.5px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .project-card:hover { border-color: rgba(74,222,128,0.25); transform: translateY(-3px); }
+  .project-card:hover::before { opacity: 1; }
+
+  .card-green::before { background: var(--green); }
+  .card-coral::before { background: var(--coral); }
+  .card-lav::before { background: var(--lavender); }
+  .card-teal::before { background: #5eead4; }
+  .card-pink::before { background: #f9a8d4; }
+
+  .project-header { display: flex; align-items: center; gap: 0.75rem; }
+
+  .project-sigil {
+    font-family: 'Space Mono', monospace;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 3px;
+    border: 1px solid;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+  .sigil-green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.08); }
+  .sigil-coral { color: var(--coral); border-color: rgba(255,107,91,0.3); background: rgba(255,107,91,0.08); }
+  .sigil-lav { color: var(--lavender); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.08); }
+  .sigil-teal { color: #5eead4; border-color: rgba(94,234,212,0.3); background: rgba(94,234,212,0.08); }
+  .sigil-pink { color: #f9a8d4; border-color: rgba(249,168,212,0.3); background: rgba(249,168,212,0.08); }
+
+  .project-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .project-type {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; flex: 1; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .project-links { display: flex; gap: 0.75rem; }
+
+  .proj-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196,181,253,0.2);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .proj-link:hover { color: var(--green); border-color: var(--green); }
+
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(74,222,128,0.1);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  footer a { color: var(--green); text-decoration: none; }
+
+  @keyframes fadein { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    #hero, #about, #experience, #projects { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .exp-header { flex-direction: column; gap: 0.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">nj.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="mailto:n.lacambra@ufl.edu">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">// cs student + developer + designer</div>
+    <div class="prompt-line"><span>~/portfolio $</span> whoami</div>
+    <h1 class="hero-name">
+      <span class="accent">Hi, I'm </span>NJ<span class="cursor"></span>
+    </h1>
+    <p class="hero-subtitle">
+      Senior CS major at <em>University of Florida</em> — building apps, games, and tools
+      that are actually <em>fun to use</em>.
+    </p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="#projects">./see_my_work</a>
+      <a class="btn btn-ghost" href="https://github.com/njneered" target="_blank">github ↗</a>
+    </div>
+    <div class="terminal-bar">
+      <div><span class="t-yellow">skills:</span> JavaScript · Java · Python · C++ · React · Figma · SQL · Even ARM (lol)</div>
+      <div><span class="t-coral">relevant courses:</span> Human-Computer Interaction · UX Design · Software Engineering · Data Structures & Algorithms · Database · Computer Organization · Operating Systems · Computer Networks · Algorithms</div>
+      <div><span class="t-blue">currently:</span> CS ed research @ the UF CS Everyone Center </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// 01 — about</div>
+  <h2 class="section-title">i'm just a girl who is losing hair from this major</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a CS senior at <em>UF</em> who loves building things at the intersection of design and functionality.  I also work as a <em>Research Assistant under Dr. Michael Johnson</em> at the <em>CS Everyone Center</em>, helping make CS and AI education more accessible for teachers across Florida.</p>
+      <p>Outside of code, I love the gym and found a solid community at my time within <em>Operations at UF Recreational Sports</em>, spilling tea at the <em>Tea Club</em>, and mentored high school students as a <em>Robotics Teaching Assistant</em> (ok that one's still about code but whatever), and aggressively stress-playing the <em>piano</em> (and crying) until I forget about the bug I can't debug (the one that contributes to my greying hair).</p>
+      <p>My focus is <em>UX and design.</em> How something feels matters just as much as how it works, so Figma is basically a second home at this point.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-label">// languages</div>
+        <div class="skill-tags">
+          <span class="tag tag-gold">Java</span>
+          <span class="tag tag-gold">Python</span>
+          <span class="tag tag-gold">C++</span>
+          <span class="tag tag-gold">JavaScript</span>
+          <span class="tag tag-gold">SQL</span>
+          <span class="tag tag-gold">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">// tools & frameworks</div>
+        <div class="skill-tags">
+          <span class="tag tag-coral">React</span>
+          <span class="tag tag-coral">SwiftUI</span>
+          <span class="tag tag-coral">Flask</span>
+          <span class="tag tag-coral">Supabase</span>
+          <span class="tag tag-coral">SFML</span>
+          <span class="tag tag-coral">Git</span>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">// design & ux</div>
+        <div class="skill-tags">
+          <span class="tag tag-blue">Figma</span>
+          <span class="tag tag-blue">UI/UX Design</span>
+          <span class="tag tag-blue">Wireframing</span>
+          <span class="tag tag-blue">Prototyping</span>
+          <span class="tag tag-blue">Storyboarding</span>
+          <span class="tag tag-blue">User Research</span>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">// coursework</div>
+        <div class="skill-tags">
+          <span class="tag tag-teal">Computer Networks</span>
+          <span class="tag tag-teal">HCI</span>
+          <span class="tag tag-teal">Data Structures</span>
+          <span class="tag tag-teal">PLC</span>
+          <span class="tag tag-teal">Software Engineering</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// 02 — experience</div>
+  <h2 class="section-title">the résumé section</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-role">Research Assistant</div>
+        <div class="exp-date">Jan 2026 — Present</div>
+      </div>
+      <div class="exp-org">CS Everyone Center · University of Florida</div>
+      <div class="exp-desc">Working with a team dedicated to expanding CS and AI education access for teachers across Florida and beyond. Helping build tools and resources that make it easier for educators — regardless of subject area — to bring computer science into their classrooms and prepare students for tomorrow's workforce.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-role">Robotics Teaching Assistant</div>
+        <div class="exp-date">Jan 2025 — Apr 2025</div>
+      </div>
+      <div class="exp-org">UFTeach · Loften High School</div>
+      <div class="exp-desc">Mentored high school students in debugging VEX robots for competition, troubleshot Python and C++ code side-by-side with them, and tried to make robotics feel less intimidating and more exciting. Got to watch students actually enjoy debugging — rare and beautiful. Promoted collaborative problem-solving throughout.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-role">Operations Associate</div>
+        <div class="exp-date">Aug 2024 — Jan 2026</div>
+      </div>
+      <div class="exp-org">UF Recreational Sports · Southwest Rec &amp; Student Rec</div>
+      <div class="exp-desc">Kept the gym running smoothly — facility ops, safety protocols, member support, and front desk. Also spent a lot of time at the gym outside of work hours, so it was a good deal all around.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 03 — projects</div>
+  <h2 class="section-title">fun stuff i've built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card card-green">
+      <div class="project-header">
+        <div class="project-sigil sigil-green">✦</div>
+        <div>
+          <div class="project-name">Hangout.</div>
+          <div class="project-type">Social Coordination Platform</div>
+        </div>
+      </div>
+      <div class="project-desc">A social scheduling app that makes planning hangouts actually easy — shared calendars, event planning, and a host/invite flow that feels native and fun. Built with SwiftUI and real-time data binding.</div>
+      <div class="project-stack">
+        <span class="tag tag-green">SwiftUI</span>
+        <span class="tag tag-green">iOS</span>
+        <span class="tag tag-green">Figma</span>
+        <span class="tag tag-green">Social</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/njneered/Hangout." target="_blank">github ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card card-pink">
+      <div class="project-header">
+        <div class="project-sigil sigil-pink">♡</div>
+        <div>
+          <div class="project-name">OurTime.com Redesign</div>
+          <div class="project-type">UX Design Case Study</div>
+        </div>
+      </div>
+      <div class="project-desc">My teammate and I picked OurTime — a dating app for adults 50+ — because we found it hilariously bad and a genuinely great design challenge. Turns out designing for elderly romance is both heartwarming and technically demanding. We love love. Full Figma redesign grounded in usability research, accessibility, and a whole lot of empathy.</div>
+      <div class="project-stack">
+        <span class="tag tag-pink">Figma</span>
+        <span class="tag tag-pink">UX Research</span>
+        <span class="tag tag-pink">Usability Testing</span>
+        <span class="tag tag-pink">Accessibility</span>
+      </div>
+    </div>
+
+    <div class="project-card card-coral">
+      <div class="project-header">
+        <div class="project-sigil sigil-coral">★</div>
+        <div>
+          <div class="project-name">Yeet or Eat</div>
+          <div class="project-type">Food Review Web App</div>
+        </div>
+      </div>
+      <div class="project-desc">A chaotic, meme-friendly food review app for college students — rate meals with the same energy you rate memes. Built for hot takes, food therapy, and midnight taco thoughts.</div>
+      <div class="project-stack">
+        <span class="tag tag-coral">React</span>
+        <span class="tag tag-coral">Flask</span>
+        <span class="tag tag-coral">Supabase</span>
+        <span class="tag tag-coral">Figma</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/njneered/Yeet_or_Eat" target="_blank">github ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card card-lav">
+      <div class="project-header">
+        <div class="project-sigil sigil-lav">▲</div>
+        <div>
+          <div class="project-name">The Floor is Lava!!!</div>
+          <div class="project-type">Isometric Route Planning Sim</div>
+        </div>
+      </div>
+      <div class="project-desc">Tile-based isometric GPS sim by Reptile Dysfunction (Group 77). Dijkstra's + A* with real-time comparison, Perlin noise, procedural generation, custom pixel art, walking animation, and lava.</div>
+      <div class="project-stack">
+        <span class="tag tag-lav">C++</span>
+        <span class="tag tag-lav">SFML</span>
+        <span class="tag tag-lav">Algorithms</span>
+        <span class="tag tag-lav">Pixel Art</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/njneered/lava" target="_blank">github ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card card-teal">
+      <div class="project-header">
+        <div class="project-sigil sigil-teal">◈</div>
+        <div>
+          <div class="project-name">Minesweeper</div>
+          <div class="project-type">Classic Rebuilt</div>
+        </div>
+      </div>
+      <div class="project-desc">A classic rebuilt from scratch. Clean logic, satisfying reveals, and the eternal anxiety of guessing the last tile.</div>
+      <div class="project-stack">
+        <span class="tag tag-teal">C++</span>
+        <span class="tag tag-teal">Game Logic</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/njneered/Minesweeper" target="_blank">github ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>built by nj — <a href="https://github.com/njneered">github.com/njneered</a></p>
+</footer>
+
+<script>
+  const greetings = [
+    "Hi, I'm ",
+    "Hola, soy ",
+    "Bonjour, je suis ",
+    "こんにちは、私は ",
+    "안녕하세요, 저는 ",
+    "Merhaba, ben ",
+    "Ciao, sono ",
+    "Olá, eu sou ",
+  ];
+
+  let index = 0;
+  const accentEl = document.querySelector('.hero-name .accent');
+
+  setInterval(() => {
+    accentEl.style.opacity = '0';
+    setTimeout(() => {
+      index = (index + 1) % greetings.length;
+      accentEl.textContent = greetings[index];
+      accentEl.style.opacity = '1';
+    }, 300);
+  }, 2500);
+</script>
+
+</body>
+</html>
