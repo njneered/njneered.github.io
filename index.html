@@ -3,593 +3,16 @@
 <head>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>emailjs.init("h3DhotJkzLyzETOJC");</script>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>njneered — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #000000;
-    --green: #4ade80;
-    --coral: #ff6b5b;
-    --pink:#f9a8d4;
-    --text: #e2e8f0;
-    --muted: #94a3b8;
-    --border: rgba(196,181,253,0.15);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(74,222,128,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(74,222,128,0.05) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2.5rem;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(74,222,128,0.12);
-  }
-
-  .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.9rem;
-    color: var(--green);
-    letter-spacing: 0.05em;
-  }
-  .nav-logo::before { content: '> '; color: var(--muted); }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-family: 'Space Mono', monospace;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--green); }
-
-  section { position: relative; z-index: 1; }
-
-  /* HERO */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 6rem 2.5rem 4rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .hero-inner {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    width: 100%;
-  }
-
-  .hero-content { flex: 1; }
-
-  .hero-tag {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--green);
-    border: 1px solid rgba(74,222,128,0.4);
-    border-radius: 2px;
-    padding: 3px 10px;
-    letter-spacing: 0.12em;
-    margin-bottom: 1.5rem;
-    animation: fadein 0.6s ease both;
-    background: rgba(74,222,128,0.05);
-  }
-
-  .prompt-line {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-    animation: fadein 0.6s 0.05s ease both;
-  }
-  .prompt-line span { color: var(--green); }
-
-  .hero-name {
-    font-family: 'Space Mono', monospace;
-    font-size: clamp(2.2rem, 6vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.05;
-    color: var(--text);
-    animation: fadein 0.7s 0.1s ease both;
-  }
-  .hero-name .accent { color: var(--green); transition: opacity 0.3s ease; }
-
-  .cursor {
-    display: inline-block;
-    width: 0.55em;
-    height: 1em;
-    background: var(--green);
-    margin-left: 4px;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-    border-radius: 1px;
-  }
-
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-  .hero-subtitle {
-    margin-top: 1.25rem;
-    font-size: 1rem;
-    color: var(--muted);
-    max-width: 520px;
-    animation: fadein 0.7s 0.2s ease both;
-  }
-  .hero-subtitle em { color: var(--pink); font-style: normal; }
-
-  .hero-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-    animation: fadein 0.7s 0.3s ease both;
-  }
-
-  .btn {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    padding: 0.6rem 1.3rem;
-    border-radius: 3px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.15s, opacity 0.15s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: none;
-  }
-  .btn:hover { transform: translateY(-2px); opacity: 0.88; }
-  .btn-primary { background: var(--green); color: #0a1a0e; font-weight: 700; }
-  .btn-ghost { background: transparent; color: var(--pink); border: 1.5px solid rgba(196,181,253,0.35); }
-
-  .terminal-bar {
-    margin-top: 2.5rem;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(74,222,128,0.15);
-    border-radius: 6px;
-    padding: 1rem 1.25rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    max-width: 560px;
-    animation: fadein 0.7s 0.4s ease both;
-  }
-  .terminal-bar .t-green { color: var(--green); }
-  .terminal-bar .t-coral { color: var(--coral); }
-  .terminal-bar .t-pink { color: var(--pink); }
-  .terminal-bar .t-blue { color: #60a5fa; }
-  .terminal-bar .t-yellow { color: gold; }
-  .terminal-bar div { margin-bottom: 0.3rem; }
-  .terminal-bar div:last-child { margin-bottom: 0; }
-
-  /* HERO PHOTO */
-  .hero-photo-wrap {
-    position: relative;
-    flex-shrink: 0;
-    animation: fadein 0.7s 0.2s ease both;
-  }
-
-  .hero-photo-wrap::after {
-    content: '[ car_selfie.exe ]';
-    position: absolute;
-    bottom: -1.4rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--green);
-    opacity: 0.7;
-    white-space: nowrap;
-    letter-spacing: 0.1em;
-  }
-
-  .hero-photo {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(74,222,128,0.6);
-    outline: 4px solid rgba(74,222,128,0.15);
-    outline-offset: 4px;
-    filter: grayscale(20%) contrast(1.05);
-    display: block;
-  }
-
-  /* SHARED */
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--green);
-    letter-spacing: 0.15em;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-title {
-    font-family: 'Space Mono', monospace;
-    font-size: clamp(1.3rem, 3.5vw, 1.9rem);
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--text);
-  }
-
-  .tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.05em;
-    padding: 2px 8px;
-    border-radius: 2px;
-    border: 1px solid;
-  }
-  .tag-green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.06); }
-  .tag-coral { color: var(--coral); border-color: rgba(255,107,91,0.3); background: rgba(255,107,91,0.06); }
-  .tag-hpink { color: var(--pink); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.06); }
-  .tag-teal { color: #5eead4; border-color: rgba(94,234,212,0.3); background: rgba(94,234,212,0.06); }
-  .tag-pink { color: #f9a8d4; border-color: rgba(249,168,212,0.3); background: rgba(249,168,212,0.06); }
-  .tag-gold { color: #eed024; border-color: #7e7235; background: #110f03; }
-  .tag-blue { color: #60a5fa; border-color: #194e8b; background: #172636; }
-
-  /* ABOUT */
-  #about {
-    padding: 6rem 2.5rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-  }
-
-  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.92rem; }
-  .about-text p em { color: var(--pink); font-style: normal; }
-
-  .skills-grid { display: flex; flex-direction: column; gap: 0.85rem; }
-
-  .skill-item {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(74,222,128,0.1);
-    border-radius: 4px;
-    padding: 0.75rem 1rem;
-  }
-
-  .skill-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--green);
-    letter-spacing: 0.12em;
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
-  }
-
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-  /* EXPERIENCE */
-  #experience {
-    padding: 2rem 2.5rem 4rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .exp-list { display: flex; flex-direction: column; gap: 1rem; }
-
-  .exp-card {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(74,222,128,0.1);
-    border-left: 2px solid var(--green);
-    border-radius: 0 4px 4px 0;
-    padding: 1rem 1.25rem;
-  }
-
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.25rem;
-  }
-
-  .exp-role {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .exp-date {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--green);
-    white-space: nowrap;
-    opacity: 0.8;
-  }
-
-  .exp-org {
-    font-size: 0.8rem;
-    color: var(--pink);
-    margin-bottom: 0.6rem;
-  }
-
-  .exp-desc {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* PROJECTS */
-  #projects {
-    padding: 2rem 2.5rem 6rem;
-    max-width: 1050px;
-    margin: 0 auto;
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 1.1rem;
-    margin-top: 0.5rem;
-  }
-
-  .project-card {
-    background: rgba(0,0,0,0.35);
-    border: 1px solid rgba(74,222,128,0.1);
-    border-radius: 5px;
-    padding: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1.5px;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .project-card:hover { border-color: rgba(74,222,128,0.25); transform: translateY(-3px); }
-  .project-card:hover::before { opacity: 1; }
-
-  .card-green::before { background: var(--green); }
-  .card-coral::before { background: var(--coral); }
-  .card-pink::before { background: var(--pink); }
-  .card-teal::before { background: #5eead4; }
-  .card-pink::before { background: #f9a8d4; }
-  .card-yellow::before { background: gold; }
-
-  .project-header { display: flex; align-items: center; gap: 0.75rem; }
-
-  .project-sigil {
-    font-family: 'Space Mono', monospace;
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 3px;
-    border: 1px solid;
-    flex-shrink: 0;
-    font-size: 1rem;
-  }
-  .sigil-green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.08); }
-  .sigil-coral { color: var(--coral); border-color: rgba(255,107,91,0.3); background: rgba(255,107,91,0.08); }
-  .sigil-hpink { color: var(--pink); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.08); }
-  .sigil-teal { color: #5eead4; border-color: rgba(94,234,212,0.3); background: rgba(94,234,212,0.08); }
-  .sigil-pink { color: #f9a8d4; border-color: rgba(249,168,212,0.3); background: rgba(249,168,212,0.08); }
-  .sigil-yellow { color: gold; border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.08); }
-
-  .project-name {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .project-type {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-style: italic;
-  }
-
-  .project-img {
-    width: 100%;
-    height: 120px;
-    object-fit: contain;
-    border-radius: 3px;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(74,222,128,0.1);
-  }
-
-  .project-img-contain {
-    width: 100%;
-    height: 120px;
-    object-fit: contain;
-    border-radius: 3px;
-    background: rgba(0,0,0,0.3);
-    padding: 0.75rem;
-    border: 1px solid rgba(74,222,128,0.1);
-  }
-
-  .project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; flex: 1; }
-  .project-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-  .project-links { display: flex; gap: 0.75rem; }
-
-  .proj-link {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(196,181,253,0.2);
-    padding-bottom: 1px;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  .proj-link:hover { color: var(--green); border-color: var(--green); }
-
-  footer {
-    position: relative; z-index: 1;
-    text-align: center;
-    padding: 2.5rem 2rem;
-    border-top: 1px solid rgba(74,222,128,0.1);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-  footer a { color: var(--green); text-decoration: none; }
-
-  @keyframes fadein { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-
-  @media (max-width: 640px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: 0.7rem; }
-    .nav-logo { font-size: 0.8rem; }
-    #hero, #about, #experience, #projects { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .about-grid { grid-template-columns: 1fr; }
-    .exp-header { flex-direction: column; gap: 0.25rem; }
-    .hero-inner { flex-direction: column-reverse; gap: 2rem; align-items: flex-start; }
-    .hero-photo { width: 140px; height: 140px; }
-    .hero-photo-wrap { align-self: center; }
-  }
-
-  /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 999;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-overlay.active { display: flex; }
-
-  .modal {
-    background: #0a0a0a;
-    border: 1px solid rgba(74,222,128,0.25);
-    border-radius: 8px;
-    padding: 2rem;
-    width: 90%;
-    max-width: 480px;
-    position: relative;
-  }
-
-  .modal-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-
-  .modal-sub {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem; right: 1.25rem;
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--green); }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    margin-bottom: 1rem;
-  }
-
-  .form-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--green);
-    letter-spacing: 0.1em;
-    opacity: 0.8;
-  }
-
-  .form-input {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(74,222,128,0.2);
-    border-radius: 4px;
-    padding: 0.6rem 0.85rem;
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.78rem;
-    transition: border-color 0.2s;
-    resize: none;
-  }
-  .form-input:focus {
-    outline: none;
-    border-color: rgba(74,222,128,0.6);
-  }
-
-  .form-status {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    margin-top: 0.75rem;
-    min-height: 1.2rem;
-  }
-  .form-status.success { color: var(--green); }
-  .form-status.error { color: var(--coral); }
-</style>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <nav>
-  <span class="nav-logo">nj.dev</span>
+  <span class="nav-logo">njneered.dev</span>
   <ul class="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#experience">experience</a></li>
@@ -598,89 +21,81 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-tag">// cs student + developer + designer</div>
+      <div class="hero-tag">// computer science + ux</div>
       <div class="prompt-line"><span>~/portfolio $</span> whoami</div>
-      <h1 class="hero-name">
-        <span class="accent">Hi, I'm </span>NJ<span class="cursor"></span>
-      </h1>
-      <p class="hero-subtitle">
-        Senior CS major at <em>University of Florida</em> — building apps, games, and tools
-        that are actually <em>fun to use</em>.
-      </p>
+      <h1 class="hero-name"><span class="accent" id="greetingEl">Howdy, pardner! I'm </span><span class="hero-nj">NJ<span class="cursor"></span></span></h1>
+      <p class="hero-subtitle">Senior CS major at <em>University of Florida</em> — building apps, games, and tools that are actually <em>fun to use</em>.</p>
       <div class="hero-links">
         <a class="btn btn-primary" href="#projects">./see_my_work</a>
-        <a class="btn btn-ghost" href="https://github.com/njneered" target="_blank">github ↗</a>
+        <a class="btn btn-ghost"  href="https://github.com/njneered" target="_blank">github ↗</a>
+        <a class="btn btn-resume" href="NJLacambra2026.pdf" target="_blank">resume.pdf ↗</a>
+        <a class="btn btn-strava" href="https://strava.app.link/N5tc4BDFA1b" target="_blank">🏃 strava ↗</a>
       </div>
       <div class="terminal-bar">
-        <div><span class="t-yellow">skills:</span> JavaScript · Java · Python · C++ · React · Figma · SQL · Even ARM (lol)</div>
-        <div><span class="t-coral">relevant courses:</span> Human-Computer Interaction · UX Design · Software Engineering · Data Structures & Algorithms · Database · Computer Organization · Operating Systems · Computer Networks · Algorithms</div>
+        <div><span class="t-yellow">skills:</span> TypeScript · JavaScript · Java · Python · C++ · React · Figma · SQL · Even ARM (lol)</div>
+        <div><span class="t-coral">relevant courses:</span> Human-Computer Interaction · UX Design · Software Engineering · Data Structures &amp; Algorithms · Database · Computer Organization · Operating Systems · Computer Networks · Algorithms</div>
         <div><span class="t-blue">currently:</span> CS ed research @ the UF CS Everyone Center</div>
       </div>
     </div>
-    <div class="hero-photo-wrap">
-      <img src="portf.JPG" alt="NJ" class="hero-photo" />
+    <div class="hero-photo-col">
+      <div class="hero-photo-wrap">
+        <img id="heroPhoto" src="duck.jpeg" alt="NJ" class="hero-photo" />
+        <div class="photo-caption" id="photoCaption">[ look_it_has_my_hair.obj ]</div>
+      </div>
+      <button id="term-fab" class="btn btn-primary term-inline-btn" aria-label="Open terminal">
+        <span class="fab-dot"></span>./open_terminal
+      </button>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label">// 01 — about</div>
-  <h2 class="section-title">just a girl (who has lost so much hair from this major)</h2>
+  <h2 class="section-title"><span class="st-static">just a girl </span><span class="st-cycle" id="st-about"></span><span class="st-caret"></span></h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm a CS senior at <em>UF</em> who loves building things at the intersection of design and functionality. I also work as a <em>Research Assistant</em> under <em>Dr. Michael Johnson</em> at the <em>CS Everyone Center</em>, helping make CS and AI education more accessible for teachers across Florida.</p>
+      <p>I'm a CS senior at <em>UF</em> who loves building things at the intersection of design and functionality. I also work as a <em>Research Assistant</em> under <em>Michael J. Johnson, PhD</em> at the <em>CS Everyone Center</em>, helping make CS and AI education more accessible for teachers across Florida.</p>
       <p>Outside of code, I love the gym and found a solid community at my time within <em>Operations at UF Recreational Sports</em>, spilling tea at the <em>Tea Club</em>, mentored high school students as a <em>Robotics Teaching Assistant</em> (ok that one's still about code but whatever), and aggressively stress-playing the <em>piano</em> until I forget about whatever bug is currently responsible for my greying hair.</p>
       <p>My focus is <em>UX and design</em>. How something feels matters just as much as how it works, so Figma is basically a second home at this point.</p>
     </div>
     <div class="skills-grid">
       <div class="skill-item">
-        <div class="skill-label">// languages</div>
-        <div class="skill-tags">
-          <span class="tag tag-gold">Java</span>
-          <span class="tag tag-gold">Python</span>
-          <span class="tag tag-gold">C++</span>
-          <span class="tag tag-gold">JavaScript</span>
-          <span class="tag tag-gold">SQL</span>
-          <span class="tag tag-gold">HTML/CSS</span>
+        <div class="skill-label">// proficiency — based on github data</div>
+        <div class="proficiency-list" id="profBars">
+          <div class="prof-row"><span class="prof-name">Figma</span>      <div class="prof-track"><div class="prof-fill pink"  data-pct="95"></div></div><span class="prof-pct">95%</span></div>
+          <div class="prof-row"><span class="prof-name">TypeScript</span><div class="prof-track"><div class="prof-fill green" data-pct="92"></div></div><span class="prof-pct">92%</span></div>
+          <div class="prof-row"><span class="prof-name">C++</span>        <div class="prof-track"><div class="prof-fill coral" data-pct="88"></div></div><span class="prof-pct">88%</span></div>
+          <div class="prof-row"><span class="prof-name">JavaScript</span><div class="prof-track"><div class="prof-fill green" data-pct="85"></div></div><span class="prof-pct">85%</span></div>
+          <div class="prof-row"><span class="prof-name">React / RN</span><div class="prof-track"><div class="prof-fill blue"  data-pct="84"></div></div><span class="prof-pct">84%</span></div>
+          <div class="prof-row"><span class="prof-name">Python</span>    <div class="prof-track"><div class="prof-fill teal"  data-pct="80"></div></div><span class="prof-pct">80%</span></div>
+          <div class="prof-row"><span class="prof-name">SQL</span>       <div class="prof-track"><div class="prof-fill blue"  data-pct="72"></div></div><span class="prof-pct">72%</span></div>
         </div>
       </div>
       <div class="skill-item">
-        <div class="skill-label">// tools & frameworks</div>
+        <div class="skill-label">// tools &amp; frameworks</div>
         <div class="skill-tags">
-          <span class="tag tag-coral">React</span>
-          <span class="tag tag-coral">SwiftUI</span>
-          <span class="tag tag-coral">Flask</span>
-          <span class="tag tag-coral">Supabase</span>
-          <span class="tag tag-coral">SFML</span>
-          <span class="tag tag-coral">Git</span>
+          <span class="tag tag-coral">React Native</span><span class="tag tag-coral">React</span><span class="tag tag-coral">Expo</span>
+          <span class="tag tag-coral">Flask</span><span class="tag tag-coral">Supabase</span><span class="tag tag-coral">SFML</span>
+          <span class="tag tag-coral">SwiftUI</span><span class="tag tag-coral">Git</span>
         </div>
       </div>
       <div class="skill-item">
-        <div class="skill-label">// design & ux</div>
+        <div class="skill-label">// design &amp; ux</div>
         <div class="skill-tags">
-          <span class="tag tag-blue">Figma</span>
-          <span class="tag tag-blue">UI/UX Design</span>
-          <span class="tag tag-blue">Wireframing</span>
-          <span class="tag tag-blue">Prototyping</span>
-          <span class="tag tag-blue">Storyboarding</span>
-          <span class="tag tag-blue">User Research</span>
+          <span class="tag tag-blue">Figma</span><span class="tag tag-blue">UI/UX Design</span><span class="tag tag-blue">Wireframing</span>
+          <span class="tag tag-blue">Prototyping</span><span class="tag tag-blue">Storyboarding</span><span class="tag tag-blue">User Research</span>
         </div>
       </div>
       <div class="skill-item">
         <div class="skill-label">// coursework</div>
         <div class="skill-tags">
-          <span class="tag tag-teal">Computer Networks</span>
-          <span class="tag tag-teal">Human-Computer Interaction</span>
-          <span class="tag tag-teal">UX Design</span>
-          <span class="tag tag-teal">Data Structures & Algorithms</span>
-          <span class="tag tag-teal">Programming Language Concepts</span>
-          <span class="tag tag-teal">Software Engineering</span>
-          <span class="tag tag-teal">Database</span>
+          <span class="tag tag-teal">Human-Computer Interaction</span><span class="tag tag-teal">Computer Networks</span>
+          <span class="tag tag-teal">Operating Systems</span><span class="tag tag-teal">UX Design</span>
+          <span class="tag tag-teal">Data Structures &amp; Algorithms</span><span class="tag tag-teal">Programming Language Concepts</span>
+          <span class="tag tag-teal">Software Engineering</span><span class="tag tag-teal">Database</span>
           <span class="tag tag-teal">Computer Organization</span>
         </div>
       </div>
@@ -688,278 +103,632 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-label">// 02 — experience</div>
-  <h2 class="section-title">the résumé section</h2>
+  <h2 class="section-title"><span class="st-static">the </span><span class="st-cycle" id="st-exp"></span><span class="st-caret"></span></h2>
   <div class="exp-list">
-
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Research Assistant</div>
-        <div class="exp-date">Jan 2026 — Present</div>
-      </div>
+    <div class="exp-card reveal">
+      <div class="exp-header"><div class="exp-role">Research Assistant</div><div class="exp-date">Jan 2026 — Present</div></div>
       <div class="exp-org">CS Everyone Center · University of Florida</div>
       <div class="exp-desc">Working with a team dedicated to expanding CS and AI education access for teachers across Florida and beyond. Helping build tools and resources that make it easier for educators to bring computer science into their classrooms and prepare students for tomorrow's workforce.</div>
     </div>
-
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Robotics Teaching Assistant</div>
-        <div class="exp-date">Jan 2025 — Apr 2025</div>
-      </div>
+    <div class="exp-card reveal">
+      <div class="exp-header"><div class="exp-role">Robotics Teaching Assistant</div><div class="exp-date">Jan 2025 — Apr 2025</div></div>
       <div class="exp-org">Loften High School</div>
       <div class="exp-desc">Mentored high school students in debugging VEX robots for competition, troubleshot Python and C++ code side-by-side with them, and tried to make robotics feel less intimidating and more exciting. Watched kids go from "I hate this what am I doing" to "wait that actually worked even though I still don't know what I'm doing."</div>
     </div>
-
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Operations Associate</div>
-        <div class="exp-date">Aug 2024 — Jan 2026</div>
-      </div>
+    <div class="exp-card reveal">
+      <div class="exp-header"><div class="exp-role">Operations Associate</div><div class="exp-date">Aug 2024 — Jan 2026</div></div>
       <div class="exp-org">UF Recreational Sports · Southwest Rec &amp; Student Rec</div>
       <div class="exp-desc">Ran daily facility operations across Southwest Rec and Student Rec by keeping things safe, welcoming, and running smoothly. Loved being part of a community that takes both fitness and people seriously.</div>
     </div>
-
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">// 03 — projects</div>
-  <h2 class="section-title">fun stuff i've built</h2>
+  <h2 class="section-title"><span class="st-cycle" id="st-proj"></span><span class="st-caret"></span></h2>
+  <p id="flip-hint-label" style="font-size:0.7rem;color:var(--muted);margin-bottom:1.25rem;letter-spacing:0.05em;">// hover a card to flip it ↓</p>
   <div class="projects-grid">
 
-    <div class="project-card card-green">
-      <div class="project-header">
-        <div class="project-sigil sigil-green">✦</div>
-        <div>
-          <div class="project-name">Hangout.</div>
-          <div class="project-type">Social Coordination Platform</div>
-        </div>
+    <div class="project-card-outer reveal"><div class="project-card card-yellow">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-yellow">✦</div><div><div class="project-name">Hangout.</div><div class="project-type">Social Coordination Platform</div></div></div>
+        <img src="hangout-logo.png" alt="Hangout" class="project-img-contain" />
+        <div class="project-desc">A social scheduling app that makes planning hangouts actually easy. Shared calendars, availability coordination, collaborative event planning. No more "when are you free" text chains.</div>
+        <div class="project-stack"><span class="tag tag-gold">React Native</span><span class="tag tag-gold">Expo</span><span class="tag tag-gold">TypeScript</span><span class="tag tag-gold">Supabase</span></div>
+        <div class="team-tag">👥 Stack Underflow</div>
+        <div class="flip-hint">hover to flip →</div>
       </div>
-      <img src="hangout-logo.png" alt="Hangout" class="project-img-contain" />
-      <div class="project-desc">A social scheduling app that makes planning hangouts actually easy. Shared calendars, event planning, and a host/invite flow that feels native and fun. Built with SwiftUI and real-time data binding.</div>
-      <div class="project-stack">
-        <span class="tag tag-green">SwiftUI</span>
-        <span class="tag tag-green">iOS</span>
-        <span class="tag tag-green">Figma</span>
-        <span class="tag tag-green">Social</span>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// what I built</div><div class="back-desc">Built end-to-end with React Native + Expo and Supabase backend. Tackled real-time availability syncing, calendar UX in Figma, and making group coordination feel natural on mobile. TypeScript kept async state across multiple users manageable.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-gold">React Native</span><span class="tag tag-gold">Expo</span><span class="tag tag-gold">TypeScript</span><span class="tag tag-gold">Supabase</span><span class="tag tag-gold">Figma</span></div><div class="project-links"><a class="proj-link" href="https://github.com/njneered/Hangout." target="_blank" onclick="event.stopPropagation()">github ↗</a></div></div>
       </div>
-      <div class="project-links">
-        <a class="proj-link" href="https://github.com/njneered/Hangout." target="_blank">github ↗</a>
-      </div>
-    </div>
+    </div></div>
 
-    <div class="project-card card-pink">
-      <div class="project-header">
-        <div class="project-sigil sigil-pink">♡</div>
-        <div>
-          <div class="project-name">OurTime.com Redesign</div>
-          <div class="project-type">UX Design Case Study</div>
-        </div>
+    <div class="project-card-outer reveal"><div class="project-card card-pink">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-pink">♡</div><div><div class="project-name">OurTime.com Redesign</div><div class="project-type">UX Design Case Study</div></div></div>
+        <img src="ourtime.png" alt="OurTime Redesign" class="project-img-contain" />
+        <div class="project-desc">My teammate and I picked OurTime (a dating app for adults 50+) because we found it hilarious and a great design challenge. Full Figma redesign grounded in usability research and accessibility.</div>
+        <div class="project-stack"><span class="tag tag-pink">Figma</span><span class="tag tag-pink">UX Research</span><span class="tag tag-pink">Accessibility</span></div>
+        <div class="team-tag">👥 The Matchmakers</div>
+        <div class="flip-hint">hover to flip →</div>
       </div>
-      <img src="ourtime.png" alt="OurTime Redesign" class="project-img-contain" />
-      <div class="project-desc">My teammate and I picked OurTime (a dating app for adults 50+) because we found it hilarious and a great design challenge at the same time. Full Figma redesign grounded in usability research, and accessibility.</div>
-      <div class="project-stack">
-        <span class="tag tag-pink">Figma</span>
-        <span class="tag tag-pink">UX Research</span>
-        <span class="tag tag-pink">Usability Testing</span>
-        <span class="tag tag-pink">Accessibility</span>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// what I learned</div><div class="back-desc">Conducted usability testing with real users, found major pain points around navigation and legibility for older adults, redesigned the full onboarding + matching flow. Designing for 50+ made every decision more intentional.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-pink">Figma</span><span class="tag tag-pink">UX Research</span><span class="tag tag-pink">Usability Testing</span><span class="tag tag-pink">Accessibility</span></div></div>
       </div>
-    </div>
+    </div></div>
 
-    <div class="project-card card-coral">
-      <div class="project-header">
-        <div class="project-sigil sigil-coral">★</div>
-        <div>
-          <div class="project-name">Yeet or Eat</div>
-          <div class="project-type">Food Review Web App</div>
-        </div>
+    <div class="project-card-outer reveal"><div class="project-card card-coral">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-coral">★</div><div><div class="project-name">Yeet or Eat</div><div class="project-type">Food Review Web App</div></div></div>
+        <img src="yeet_or_eat.PNG" alt="Yeet or Eat" class="project-img" />
+        <div class="project-desc">A chaotic, meme-friendly food review app where UF students rate meals with the same energy they rate memes.</div>
+        <div class="project-stack"><span class="tag tag-coral">React</span><span class="tag tag-coral">Flask</span><span class="tag tag-coral">Supabase</span><span class="tag tag-coral">Figma</span></div>
+        <div class="team-tag">👥 Snack Overflow</div>
+        <div class="flip-hint">hover to flip →</div>
       </div>
-      <img src="yeet_or_eat.PNG" alt="Yeet or Eat" class="project-img" />
-      <div class="project-desc">A chaotic, meme-friendly food review app where UF students rate meals with the same energy they rate memes.</div>
-      <div class="project-stack">
-        <span class="tag tag-coral">React</span>
-        <span class="tag tag-coral">Flask</span>
-        <span class="tag tag-coral">Supabase</span>
-        <span class="tag tag-coral">Figma</span>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// the chaos</div><div class="back-desc">Full-stack with React frontend, Flask REST API, Supabase for auth + database. Designed in Figma first. The challenge was making something genuinely fun — the vibe had to match the concept.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-coral">React</span><span class="tag tag-coral">Flask</span><span class="tag tag-coral">Supabase</span><span class="tag tag-coral">Figma</span></div><div class="project-links"><a class="proj-link" href="https://github.com/njneered/Yeet_or_Eat" target="_blank" onclick="event.stopPropagation()">github ↗</a></div></div>
       </div>
-      <div class="project-links">
-        <a class="proj-link" href="https://github.com/njneered/Yeet_or_Eat" target="_blank">github ↗</a>
-      </div>
-    </div>
+    </div></div>
 
-    <div class="project-card card-yellow">
-      <div class="project-header">
-        <div class="project-sigil sigil-yellow">★</div>
-        <div>
-          <div class="project-name">Swamp Sudoku</div>
-          <div class="project-type">Pixel Art Puzzle Game</div>
-        </div>
+    <div class="project-card-outer reveal"><div class="project-card card-green">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-green">★</div><div><div class="project-name">Swamp Sudoku</div><div class="project-type">Pixel Art Puzzle Game</div></div></div>
+        <img src="swamp_sudoku.png" alt="Swamp Sudoku" class="project-img" />
+        <div class="project-desc">A pixel art sudoku game featuring Gus the Gator, designed pixel by pixel. Three difficulty modes: Easy, Medium, and Pro Gamer (good luck).</div>
+        <div class="project-stack"><span class="tag tag-green">Python</span><span class="tag tag-green">PyGame</span><span class="tag tag-green">Pixel Art</span></div>
+        <div class="team-tag">👥 Group 30</div>
+        <div class="flip-hint">hover to flip →</div>
       </div>
-      <img src="swamp_sudoku.png" alt="Swamp Sudoku" class="project-img" />
-      <div class="project-desc">A pixel art sudoku game built with my group Reptile Dysfunction. Featuring Gus the Gator, our lovable mascot that I designed and brought to life pixel by pixel. I handled the pixel art, character design, and game logic. Three difficulty modes: Easy, Medium, and Pro Gamer (good luck).</div>
-      <div class="project-stack">
-        <span class="tag tag-green">C++</span>
-        <span class="tag tag-green">Pixel Art</span>
-        <span class="tag tag-green">Game Logic</span>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// my fave project</div><div class="back-desc">I handled all pixel art, Gus the Gator's design, and core game logic. Every pixel is hand-placed. Learned PyGame's event system and discovered I genuinely love pixel art as a medium.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-green">Python</span><span class="tag tag-green">PyGame</span><span class="tag tag-green">Pixel Art</span><span class="tag tag-green">Game Logic</span></div><div class="project-links"><a class="proj-link" href="https://github.com/njneered/Sudoku" target="_blank" onclick="event.stopPropagation()">github ↗</a></div></div>
       </div>
-      <div class="project-links">
-        <a class="proj-link" href="https://github.com/njneered/Sudoku" target="_blank">github ↗</a>
-      </div>
-    </div>
+    </div></div>
 
-    <div class="project-card card-pink">
-      <div class="project-header">
-        <div class="project-sigil sigil-hpink">▲</div>
-        <div>
-          <div class="project-name">The Floor is Lava!!!</div>
-          <div class="project-type">Isometric Route Planning Sim</div>
-        </div>
+    <div class="project-card-outer reveal"><div class="project-card card-pink">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-hpink">▲</div><div><div class="project-name">The Floor is Lava!!!</div><div class="project-type">Isometric Route Planning Sim</div></div></div>
+        <img src="floor_is_lava.PNG" alt="The Floor is Lava" class="project-img" />
+        <div class="project-desc">Tile-based isometric GPS sim. Dijkstra's + A* with real-time comparison, Perlin noise, procedural generation, and lots of lava.</div>
+        <div class="project-stack"><span class="tag tag-pink">C++</span><span class="tag tag-pink">SFML</span><span class="tag tag-pink">Algorithms</span></div>
+        <div class="team-tag">👥 Reptile Dysfunction</div>
+        <div class="flip-hint">hover to flip →</div>
       </div>
-      <img src="floor_is_lava.PNG" alt="The Floor is Lava" class="project-img" />
-      <div class="project-desc">Gus the Gator comes back for this tile-based isometric GPS sim by my group, Reptile Dysfunction (Group 77). Dijkstra's + A* with real-time comparison, Perlin noise, procedural generation, custom pixel art, walking animation, and lots of lava.  </div>
-      <div class="project-stack">
-        <span class="tag tag-pink">C++</span>
-        <span class="tag tag-pink">SFML</span>
-        <span class="tag tag-pink">Algorithms</span>
-        <span class="tag tag-pink">Pixel Art</span>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// the nerdy stuff</div><div class="back-desc">Implemented Dijkstra's and A* from scratch, built a real-time side-by-side visualiser showing performance differences. Perlin noise for terrain, walking animation, all custom isometric pixel art. Reptile Dysfunction cooked.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-pink">C++</span><span class="tag tag-pink">SFML</span><span class="tag tag-pink">Algorithms</span><span class="tag tag-pink">Pixel Art</span></div><div class="project-links"><a class="proj-link" href="https://github.com/njneered/lava" target="_blank" onclick="event.stopPropagation()">github ↗</a></div></div>
       </div>
-      <div class="project-links">
-        <a class="proj-link" href="https://github.com/njneered/lava" target="_blank">github ↗</a>
-      </div>
-    </div>
+    </div></div>
 
-    <div class="project-card card-teal">
-      <div class="project-header">
-        <div class="project-sigil sigil-teal">◈</div>
-        <div>
-          <div class="project-name">Minesweeper</div>
-          <div class="project-type">Classic Rebuilt</div>
-        </div>
+    <div class="project-card-outer reveal"><div class="project-card card-teal">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-teal">◈</div><div><div class="project-name">Minesweeper</div><div class="project-type">Classic Rebuilt</div></div></div>
+        <img src="minesweeper.jpg" alt="Minesweeper" class="project-img" />
+        <div class="project-desc">A classic rebuilt from scratch. Clean logic, satisfying reveals, and the eternal anxiety of guessing the last tile.</div>
+        <div class="project-stack"><span class="tag tag-teal">C++</span><span class="tag tag-teal">SFML</span><span class="tag tag-teal">Game Logic</span></div>
+        <div class="flip-hint">hover to flip →</div>
       </div>
-      <img src="minesweeper.jpg" alt="Minesweeper" class="project-img" />
-      <div class="project-desc">A classic rebuilt from scratch. Clean logic, satisfying reveals, and the eternal anxiety of guessing the last tile.</div>
-      <div class="project-stack">
-        <span class="tag tag-teal">C++</span>
-        <span class="tag tag-teal">Game Logic</span>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// clean implementation</div><div class="back-desc">C++ with SFML. Flood-fill reveal, mine gen with guaranteed safe first click, flag logic — all from scratch. A tightly written class hierarchy. Classic for a reason. I've also lost to it more times than I'd like to admit.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-teal">C++</span><span class="tag tag-teal">SFML</span><span class="tag tag-teal">Game Logic</span></div><div class="project-links"><a class="proj-link" href="https://github.com/njneered/Minesweeper" target="_blank" onclick="event.stopPropagation()">github ↗</a></div></div>
       </div>
-      <div class="project-links">
-        <a class="proj-link" href="https://github.com/njneered/Minesweeper" target="_blank">github ↗</a>
+    </div></div>
+
+    <div class="project-card-outer reveal"><div class="project-card card-teal">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-teal">◬</div><div><div class="project-name">GatorAVL</div><div class="project-type">Self-Balancing BST</div></div></div>
+        <div class="project-desc" style="margin-top:0.5rem;">A from-scratch AVL tree implementation in C++. Supports insert, remove, search, and in/pre/post-order traversal. Passes all edge cases including rotations, rebalancing, and deletion of nodes with two children.</div>
+        <div class="project-stack"><span class="tag tag-teal">C++</span><span class="tag tag-teal">Data Structures</span><span class="tag tag-teal">Algorithms</span></div>
+        <div class="flip-hint">hover to flip →</div>
       </div>
-    </div>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// the dsa grind</div><div class="back-desc">Built for my Data Structures & Algorithms course at UF. Full AVL tree with rotations (LL, RR, LR, RL), height tracking, and all traversal orders. The kind of project that makes you understand why balance matters — in trees and in life.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-teal">C++</span><span class="tag tag-teal">Data Structures</span><span class="tag tag-teal">Algorithms</span></div><div class="project-links"><a class="proj-link" href="https://github.com/njneered/GatorAVL" target="_blank" onclick="event.stopPropagation()">github ↗</a></div></div>
+      </div>
+    </div></div>
+
+    <div class="project-card-outer reveal"><div class="project-card card-coral">
+      <div class="card-face">
+        <div class="project-header"><div class="project-sigil sigil-coral">⬡</div><div><div class="project-name">P2P Network</div><div class="project-type">Distributed Systems</div></div></div>
+        <div class="project-desc" style="margin-top:0.5rem;">A peer-to-peer network simulation built for Computer Networks. Implements peer discovery, message routing, and node communication without a central server — the kind of thing that makes you appreciate why the internet is hard.</div>
+        <div class="project-stack"><span class="tag tag-coral">Python</span><span class="tag tag-coral">Networking</span><span class="tag tag-coral">Distributed Systems</span></div>
+        <div class="team-tag">👥 Chloe &amp; Ana</div>
+        <div class="flip-hint">hover to flip →</div>
+      </div>
+      <div class="card-face card-face-back">
+        <div><div class="back-title">// networks are hard</div><div class="back-desc">Simulates peer discovery and message passing across a decentralized network. No central server — each node finds its own neighbors and routes messages independently. Built during Computer Networks and somehow it worked.</div></div>
+        <div class="back-footer"><div class="project-stack"><span class="tag tag-coral">Python</span><span class="tag tag-coral">Networking</span><span class="tag tag-coral">Distributed Systems</span></div><div class="project-links"><a class="proj-link" href="https://github.com/njneered/CNT4007-Networks-P2P" target="_blank" onclick="event.stopPropagation()">github ↗</a></div></div>
+      </div>
+    </div></div>
 
   </div>
 </section>
 
-<!-- CONTACT MODAL -->
 <div class="modal-overlay" id="contactModal">
   <div class="modal">
     <button class="modal-close" id="closeModal">✕</button>
     <div class="modal-title">// say hello</div>
     <div class="modal-sub">~/contact $ send_message</div>
-    <div class="form-group">
-      <label class="form-label">// your name</label>
-      <input type="text" id="from_name" class="form-input" placeholder="name" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">// your email</label>
-      <input type="email" id="from_email" class="form-input" placeholder="email" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">// subject</label>
-      <input type="text" id="subject" class="form-input" placeholder="what's up?" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">// message</label>
-      <textarea id="message" class="form-input" rows="4" placeholder="tell me things..."></textarea>
-    </div>
-    <button class="btn btn-primary" id="sendBtn" style="width:100%; justify-content:center;">./send_message</button>
+    <div class="form-group"><label class="form-label">// your name</label><input type="text" id="from_name" class="form-input" placeholder="name" /></div>
+    <div class="form-group"><label class="form-label">// your email</label><input type="email" id="from_email" class="form-input" placeholder="email" /></div>
+    <div class="form-group"><label class="form-label">// subject</label><input type="text" id="subject" class="form-input" placeholder="what's up?" /></div>
+    <div class="form-group"><label class="form-label">// message</label><textarea id="message" class="form-input" rows="4" placeholder="tell me things..."></textarea></div>
+    <button class="btn btn-primary" id="sendBtn" style="width:100%;justify-content:center;">./send_message</button>
     <div class="form-status" id="formStatus"></div>
   </div>
 </div>
 
-<footer>
-  <p>built by <em>NJ</em> bc who else? · <a href="https://github.com/njneered">github.com/njneered</a></p>
-</footer>
+<div id="term-overlay">
+  <div class="term-modal">
+    <div class="term-titlebar">
+      <div class="t-dot t-dot-red" id="term-close-btn"></div>
+      <div class="t-dot t-dot-yellow"></div>
+      <div class="t-dot t-dot-green"></div>
+      <span class="t-win-title" id="term-cwd-display">njneered@portfolio:~</span>
+      <span class="t-win-hint">esc to close</span>
+    </div>
+    <div class="term-body" id="termBody"></div>
+    <div class="term-input-row">
+      <span class="ti-prompt" id="termPrompt">njneered@portfolio:~ $&nbsp;</span>
+      <input class="t-input" id="termInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type a command..." />
+    </div>
+    <div class="term-pills" id="termPills"></div>
+  </div>
+</div>
+
+<footer><p>built by <em>NJ</em> bc who else? <a href="https://github.com/njneered">github.com/njneered</a></p></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-  emailjs.init("h3DhotJkzLyzETOJC");
+emailjs.init("h3DhotJkzLyzETOJC");
 
-  const greetings = [
-    "Hi, how are you? I'm ",
-    "Kamusta ka? Ako ay si ",
-    "¿Hola, cómo estás? Soy ",
-    "こんにちは、私は ",
-    "Bonjour, je suis ",
-    "안녕하세요, 저는 ",
-    "Merhaba, ben ",
-    "Ciao, sono ",
-    "Olá, eu sou ",
-  ];
-
-  let index = 0;
-  const accentEl = document.querySelector('.hero-name .accent');
-  setInterval(() => {
-    accentEl.style.opacity = '0';
-    setTimeout(() => {
-      index = (index + 1) % greetings.length;
-      accentEl.textContent = greetings[index];
-      accentEl.style.opacity = '1';
-    }, 300);
-  }, 2500);
-
-  // MODAL
-  const modal = document.getElementById('contactModal');
-  document.getElementById('openContact').addEventListener('click', e => {
-    e.preventDefault();
-    modal.classList.add('active');
+// ── TOUCH ────────────────────────────────────────────────────────────
+const isTouch = ('ontouchstart' in window)||(navigator.maxTouchPoints>0);
+if(isTouch){
+  const lbl=document.getElementById('flip-hint-label');
+  if(lbl)lbl.textContent='// tap a card to flip it ↓';
+  document.querySelectorAll('.flip-hint').forEach(el=>el.textContent='tap to flip →');
+}
+document.querySelectorAll('.project-card-outer').forEach(outer=>{
+  if(!isTouch)return;
+  outer.classList.add('is-touch-outer');
+  const card=outer.querySelector('.project-card');
+  outer.addEventListener('click',e=>{
+    if(e.target.closest('a'))return;
+    const was=card.classList.contains('flipped');
+    document.querySelectorAll('.project-card.flipped').forEach(c=>c.classList.remove('flipped'));
+    if(!was)card.classList.add('flipped');
   });
-  document.getElementById('closeModal').addEventListener('click', () => {
-    modal.classList.remove('active');
-  });
-  modal.addEventListener('click', e => {
-    if (e.target === modal) modal.classList.remove('active');
-  });
+});
 
-  // SEND
-  document.getElementById('sendBtn').addEventListener('click', () => {
-    const name = document.getElementById('from_name').value.trim();
-    const email = document.getElementById('from_email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const status = document.getElementById('formStatus');
+// ── PHOTO SLIDESHOW ───────────────────────────────────────────────────
+const photos = [
+  { src: 'duck.jpeg',       caption: '[ look_it_has_my_hair.obj ]' },
+  { src: 'portf.JPG',       caption: '[ most_recent_selfie.exe ]' },
+  { src: 'carina_nj.jpeg',  caption: '[ hawaii_makapuu_hike.raw ]' },
+  { src: 'focaccia.jpeg',   caption: '[ i_also_bake!!!!.jpg ]' },
+  { src: 'josiah.jpeg',     caption: '[ not_my_kid_lol.jpg ]' },
+  { src: 'murphy.jpeg',     caption: '[ fatboy_murphy.jpg ]' },
+];
+let photoIdx = 0;
+const heroPhoto    = document.getElementById('heroPhoto');
+const photoCaption = document.getElementById('photoCaption');
 
-    if (!name || !email || !subject || !message) {
-      status.textContent = '// all fields required!';
-      status.className = 'form-status error';
-      return;
+function goToPhoto(idx) {
+  photoIdx = idx;
+  heroPhoto.style.opacity = '0';
+  setTimeout(() => {
+    heroPhoto.src = photos[idx].src;
+    photoCaption.textContent = photos[idx].caption;
+    heroPhoto.style.opacity = '1';
+  }, 220);
+}
+
+heroPhoto.style.cursor = 'pointer';
+heroPhoto.style.opacity = '1';
+heroPhoto.style.transition = 'opacity 0.22s ease';
+heroPhoto.addEventListener('click', () => goToPhoto((photoIdx + 1) % photos.length));
+setInterval(() => goToPhoto((photoIdx + 1) % photos.length), 4000);
+
+// ── GREETING ROTATOR ─────────────────────────────────────────────────
+const greetings = [
+  "こんにちは、私は ",
+  "¿Hola, cómo estás? Soy ",
+  "🪓 HERE'S ",
+  "Kamusta ka? Ako ay si ",
+  "☘️ Top of the mornin to ya laddies! My name is ",
+  "Bonjour, je suis ",
+  "안녕하세요, 저는 ",
+  "你好，我的名字是 ",
+];
+const greetEl = document.getElementById('greetingEl');
+let gIdx = 0, gCi = 0, gDel = false;
+
+function greetTick() {
+  const cur = greetings[gIdx];
+  if (!gDel) {
+    greetEl.textContent = cur.slice(0, gCi + 1);
+    gCi++;
+    if (gCi === cur.length) { gDel = true; setTimeout(greetTick, 2200); return; }
+    setTimeout(greetTick, 60);
+  } else {
+    greetEl.textContent = cur.slice(0, gCi - 1);
+    gCi--;
+    if (gCi === 0) { gDel = false; gIdx = (gIdx + 1) % greetings.length; setTimeout(greetTick, 300); return; }
+    setTimeout(greetTick, 35);
+  }
+}
+setTimeout(greetTick, 2000);
+
+// ── CYCLING SECTION TITLES ────────────────────────────────────────────
+function makeCycler(elId,phrases,delay=600){
+  const el=document.getElementById(elId);
+  if(!el)return;
+  let pi=0,ci=0,del=false;
+  function tick(){
+    const cur=phrases[pi];
+    if(!del){el.textContent=cur.slice(0,ci+1);ci++;if(ci===cur.length){del=true;setTimeout(tick,2400);return;}setTimeout(tick,72);}
+    else{el.textContent=cur.slice(0,ci-1);ci--;if(ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(tick,420);return;}setTimeout(tick,38);}
+  }
+  setTimeout(tick,delay);
+}
+
+makeCycler('st-about',[
+  "[ who has lost so much hair from this major ]",
+  "[ git push to repo at like 2 am again ]",
+  "[ powered by instant coffee and Jesus ]",
+  "[ who still touches grass btw!!! ]",
+  "[ just wanna be with my dog, Doug ]",
+]);
+makeCycler('st-exp',[
+  "résumé section",
+  "evidence I leave my room",
+  "professional era, if you will",
+],700);
+makeCycler('st-proj',[
+  "fun stuff i've built",
+  "projects that made me sob",
+  "things Gus the Gator starred in 🐊",
+  "projects that survived group chats",
+],400);
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────────
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const sibs=[...(e.target.parentElement?.querySelectorAll('.reveal')||[])];
+    setTimeout(()=>e.target.classList.add('visible'),sibs.indexOf(e.target)*80);
+    revObs.unobserve(e.target);
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ── SKILL BARS ────────────────────────────────────────────────────────
+const profObs=new IntersectionObserver(entries=>{
+  if(!entries[0].isIntersecting)return;
+  document.querySelectorAll('.prof-fill').forEach((b,i)=>setTimeout(()=>{b.style.width=b.dataset.pct+'%';},i*110));
+  profObs.disconnect();
+},{threshold:0.3});
+profObs.observe(document.getElementById('profBars'));
+
+// ── TERMINAL ──────────────────────────────────────────────────────────
+const termOverlay=document.getElementById('term-overlay');
+const termBody=document.getElementById('termBody');
+const termInput=document.getElementById('termInput');
+const termPromptEl=document.getElementById('termPrompt');
+const termCwdDisp=document.getElementById('term-cwd-display');
+const contactModal=document.getElementById('contactModal');
+
+const FS={
+  '~':{type:'dir',children:{
+    projects:{type:'dir',children:{
+      'Hangout.':{type:'dir',children:{
+        'README.md':{type:'file',content:'Social scheduling app.\nReact Native + Expo + TypeScript + Supabase.\nSolves the "when are you free" group chat nightmare.\nBuilt end-to-end by NJ + Stack Underflow.'},
+        'package.json':{type:'file',content:'{\n  "name": "hangout",\n  "version": "1.0.0",\n  "framework": "React Native + Expo SDK 54",\n  "language": "TypeScript",\n  "backend": "Supabase"\n}'},
+        'app/':{type:'dir',children:{}},
+      }},
+      'Sudoku':{type:'dir',children:{
+        'README.md':{type:'file',content:'Swamp Sudoku — pixel art puzzle game.\nPython + PyGame. Three difficulty modes.\nFeaturing Gus the Gator (every pixel hand-placed).\nBuilt with Group 30.'},
+        'sudoku.py':{type:'file',content:'# main entry point for Swamp Sudoku\n# warning: contains an embarrassing amount of pride\n# also contains Gus'},
+        'gus.png':{type:'file',content:'[binary: 32x32 hand-crafted pixel art gator]\n[status: iconic]'},
+      }},
+      'lava':{type:'dir',children:{
+        'README.md':{type:'file',content:'The Floor is Lava — isometric route planning sim.\nC++ + SFML. Dijkstra\'s + A* from scratch.\nPerlin noise terrain. Custom pixel art.\nBuilt with Reptile Dysfunction (Group 77).'},
+        'main.cpp':{type:'file',content:'// entry point\n// built by Reptile Dysfunction\n// we cooked and you know it'},
+        'pathfind.cpp':{type:'file',content:'// Dijkstra\'s + A* implementation\n// side-by-side real-time visualiser included\n// this file goes hard'},
+      }},
+      'Minesweeper':{type:'dir',children:{
+        'README.md':{type:'file',content:'Classic Minesweeper rebuilt in C++ + SFML.\nFlood-fill reveal. Guaranteed safe first click.\nFlag logic. Clean class hierarchy.'},
+        'Board.cpp':{type:'file',content:'// Board class\n// clean. tidy. satisfying.\n// I still lose to this game regularly'},
+      }},
+      'Yeet_or_Eat':{type:'dir',children:{
+        'README.md':{type:'file',content:'Food review web app for UF students.\nReact + Flask + Supabase.\nchaotic. meme-coded. actually works.\nBuilt with Snack Overflow.'},
+        'app.jsx':{type:'file',content:'// main React app\n// vibes: controlled chaos\n// "yeet" = dislike, "eat" = like'},
+        'server.py':{type:'file',content:'# Flask REST API\n# runs the chaos behind the scenes'},
+      }},
+      'GatorAVL':{type:'dir',children:{
+        'README.md':{type:'file',content:'AVL tree implementation in C++.\nData Structures & Algorithms project @ UF.\nSelf-balancing BST. All rotations. All traversals.\nPasses every edge case. I checked.'},
+        'AVL.cpp':{type:'file',content:'// self-balancing BST\n// LL, RR, LR, RL rotations included\n// sanity: not guaranteed'},
+      }},
+      'CNT4007-Networks-P2P':{type:'dir',children:{
+        'README.md':{type:'file',content:'P2P network simulation — Computer Networks @ UF.\nPeer discovery + message routing, no central server.\nBuilt in Python with Chloe and Ana. Somehow it worked.'},
+        'node.py':{type:'file',content:'# peer node implementation\n# finds its own neighbors\n# routes messages independently\n# the internet is hard'},
+      }},
+    }},
+    about:{type:'dir',children:{
+      'bio.txt':{type:'file',content:'CS senior @ UF. Developer, designer, pixel artist.\nResearch Assistant @ CS Everyone Center.\nCurrently losing hair over compilers and loving every second.'},
+    }},
+    contact:{type:'dir',children:{
+      'links.txt':{type:'file',content:'GitHub:  https://github.com/njneered\nStrava:  https://strava.app.link/N5tc4BDFA1b\nResume:  NJLacambra2026.pdf'},
+    }},
+    easter_eggs:{type:'dir',children:{
+      'gus.txt':{type:'file',content:'🐊 Gus the Gator.\nYes I made him. Yes I love him. 32x32 pixels, zero regrets.\nStar of Swamp Sudoku AND The Floor is Lava.\nProbably the most important thing I\'ve built.'},
+      'reptile_dysfunction.txt':{type:'file',content:'Group 77. The Floor is Lava.\nTeam name chosen because it was funny.\nWe cooked and we know it.'},
+      'commit_messages.txt':{type:'file',content:'real commits from NJ\'s git history:\n\n"finally fixed that one bug"\n"it works (don\'t touch it)"\n"WHY"\n"okay I think I broke it worse"\n"please work please work please work"\n"initial commit"'},
+      'arm_assembly.txt':{type:'file',content:'yes I took Computer Organization.\nyes I wrote ARM assembly.\nno I cannot explain why.\nthe CPU did what I asked and I never looked back.'},
+      'hair_status.txt':{type:'file',content:'CURRENT HAIR STATUS: critically low\nCAUSE: C++ linker errors\nPROGNOSIS: unknown\nTREATMENT: iced coffee + spite'},
+    }},
+  }}
+};
+
+let cwd=['~'];
+const history=[];
+let histIdx=-1;
+
+function cwdStr(){return cwd.join('/').replace(/^~\//,'~/');}
+function promptStr(){return `njneered@portfolio:${cwdStr()} $`;}
+function nodeAt(path){
+  let node=FS['~'];
+  for(let i=1;i<path.length;i++){
+    if(!node.children||!node.children[path[i]])return null;
+    node=node.children[path[i]];
+  }
+  return node;
+}
+function currentNode(){return nodeAt(cwd);}
+function updatePrompt(){
+  termPromptEl.textContent=promptStr()+'\u00a0';
+  termCwdDisp.textContent=`njneered@portfolio:${cwdStr()}`;
+}
+
+function addLine(type,html){
+  const d=document.createElement('div');
+  d.className='tl';
+  if(type==='prompt')d.innerHTML=`<span class="tl-prompt">${promptStr()}</span><span class="tl-cmd">\u00a0${html}</span>`;
+  else if(type==='out')d.innerHTML=`<span class="tl-out">${html}</span>`;
+  else if(type==='err')d.innerHTML=`<span class="tl-err">${html}</span>`;
+  else if(type==='warn')d.innerHTML=`<span class="tl-warn">${html}</span>`;
+  termBody.appendChild(d);
+  termBody.scrollTop=termBody.scrollHeight;
+}
+
+const PILLS=[
+  {cmd:'help'},{cmd:'ls'},{cmd:'cd projects'},{cmd:'ls'},{cmd:'cd ..'},{cmd:'cat README.md'},
+  {cmd:'tree'},{cmd:'skills'},{cmd:'whoami'},{cmd:'contact'},{cmd:'github'},
+  {cmd:'cd easter_eggs'},{cmd:'git log'},{cmd:'gus'},{cmd:'clear'},
+];
+function renderPills(){
+  const c=document.getElementById('termPills');c.innerHTML='';
+  PILLS.forEach(p=>{
+    const pill=document.createElement('span');
+    pill.className='term-pill';pill.textContent=p.cmd;
+    pill.addEventListener('click',()=>runCommand(p.cmd));
+    c.appendChild(pill);
+  });
+}
+renderPills();
+
+function runCommand(raw){
+  const trimmed=raw.trim();if(!trimmed)return;
+  history.unshift(trimmed);histIdx=-1;
+  addLine('prompt',trimmed);
+  const parts=trimmed.split(/\s+/);
+  const cmd=parts[0].toLowerCase();
+  const args=parts.slice(1);
+
+  switch(cmd){
+    case 'help':
+      addLine('out','<span class="tl-hl">// filesystem</span>');
+      addLine('out','  <span class="t-green">ls</span>                list directory');
+      addLine('out','  <span class="t-green">cd &lt;dir&gt;</span>         change directory');
+      addLine('out','  <span class="t-green">cd ..</span>             go up a level');
+      addLine('out','  <span class="t-green">cat &lt;file&gt;</span>       read a file');
+      addLine('out','  <span class="t-green">pwd</span>               print working dir');
+      addLine('out','  <span class="t-green">tree</span>              show full file tree');
+      addLine('out','');
+      addLine('out','<span class="tl-hl">// portfolio</span>');
+      addLine('out','  <span class="t-green">about</span>             scroll to about');
+      addLine('out','  <span class="t-green">experience</span>        scroll to experience');
+      addLine('out','  <span class="t-green">projects</span>          scroll to projects');
+      addLine('out','  <span class="t-green">contact</span>           open contact form');
+      addLine('out','  <span class="t-green">github</span>            open github');
+      addLine('out','  <span class="t-green">resume</span>            open resume pdf');
+      addLine('out','  <span class="t-green">strava</span>            open strava');
+      addLine('out','  <span class="t-green">skills</span>            language breakdown');
+      addLine('out','  <span class="t-green">whoami</span>            who is NJ');
+      addLine('out','  <span class="t-green">git log</span>           commit history (real)');
+      addLine('out','  <span class="t-green">gus</span>               say hi to the gator');
+      addLine('out','  <span class="t-green">cd easter_eggs</span>    you know you want to');
+      addLine('out','  <span class="t-green">clear</span>             clear terminal');
+      break;
+    case 'pwd':
+      addLine('out','/home/'+cwdStr());
+      break;
+    case 'ls':{
+      const node=currentNode();
+      if(!node||!node.children){addLine('err','not a directory');break;}
+      const entries=Object.keys(node.children);
+      if(entries.length===0){addLine('out','(empty)');break;}
+      addLine('out',entries.map(name=>{
+        const ch=node.children[name];
+        return ch.type==='dir'?`<span class="tl-dir">${name}/</span>`:`<span class="tl-file">${name}</span>`;
+      }).join('&nbsp;&nbsp;&nbsp;'));
+      break;
     }
+    case 'cd':{
+      const target=args.join(' ');
+      if(!target||target==='~'){cwd=['~'];updatePrompt();break;}
+      if(target==='..'){if(cwd.length>1)cwd.pop();updatePrompt();break;}
+      const segs=target.split('/').filter(Boolean);
+      let tmp=[...cwd];let ok=true;
+      for(const seg of segs){
+        const n=nodeAt([...tmp,seg]);
+        if(!n){addLine('err',`cd: ${seg}: No such directory`);ok=false;break;}
+        if(n.type!=='dir'){addLine('err',`cd: ${seg}: Not a directory`);ok=false;break;}
+        tmp.push(seg);
+      }
+      if(ok){cwd=tmp;updatePrompt();}
+      break;
+    }
+    case 'cat':{
+      const fname=args.join(' ');
+      if(!fname){addLine('err','cat: missing filename');break;}
+      const node=currentNode();
+      if(!node||!node.children||!node.children[fname]){addLine('err',`cat: ${fname}: No such file`);break;}
+      const f=node.children[fname];
+      if(f.type==='dir'){addLine('err',`cat: ${fname}: Is a directory`);break;}
+      f.content.split('\n').forEach(line=>addLine('out',line||'&nbsp;'));
+      break;
+    }
+    case 'tree':{
+      function renderTree(node,prefix='',name='~'){
+        addLine('out',`${prefix}<span class="tl-dir">${name}/</span>`);
+        if(node.children){
+          const keys=Object.keys(node.children);
+          keys.forEach((k,i)=>{
+            const child=node.children[k];
+            const isLast=i===keys.length-1;
+            const br=isLast?'└── ':'├── ';
+            const np=prefix+(isLast?'    ':'│   ');
+            if(child.type==='dir')renderTree(child,np,k);
+            else addLine('out',`${prefix}${br}<span class="tl-file">${k}</span>`);
+          });
+        }
+      }
+      renderTree(FS['~']);
+      break;
+    }
+    case 'about':
+      closeTerminal();setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),300);
+      addLine('out','scrolling to <span class="tl-hl">// about</span>');break;
+    case 'experience':
+      closeTerminal();setTimeout(()=>document.getElementById('experience').scrollIntoView({behavior:'smooth'}),300);
+      addLine('out','scrolling to <span class="tl-hl">// experience</span>');break;
+    case 'projects':
+      closeTerminal();setTimeout(()=>document.getElementById('projects').scrollIntoView({behavior:'smooth'}),300);
+      addLine('out','scrolling to <span class="tl-hl">// projects</span>');break;
+    case 'contact':
+      addLine('out','opening contact form <span class="t-green">...</span>');
+      setTimeout(()=>{closeTerminal();contactModal.classList.add('active');},400);break;
+    case 'github':
+      addLine('out','opening <a href="https://github.com/njneered" target="_blank">github.com/njneered</a> ↗');
+      setTimeout(()=>window.open('https://github.com/njneered','_blank'),400);break;
+    case 'resume':
+      addLine('out','opening resume.pdf ↗');
+      setTimeout(()=>window.open('NJLacambra2026.pdf','_blank'),400);break;
+    case 'strava':
+      addLine('out','🏃 opening strava ... (yes I actually go outside)');
+      setTimeout(()=>window.open('https://strava.app.link/N5tc4BDFA1b','_blank'),400);break;
+    case 'skills':
+      addLine('out','<span class="tl-hl">proficiency — from github repos:</span>');
+      addLine('out','  Figma        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░  95%  (yes figma counts)');
+      addLine('out','  TypeScript   ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░  92%  (95% of Hangout.)');
+      addLine('out','  C++          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░  88%  (GatorAVL · Minesweeper · lava)');
+      addLine('out','  JavaScript   ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░  85%');
+      addLine('out','  React/RN     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░  84%');
+      addLine('out','  Python       ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░  80%  (Sudoku / PyGame)');
+      addLine('out','  SQL          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░  72%');
+      break;
+    case 'whoami':
+      addLine('out','<span class="tl-hl">NJL</span> — cs senior @ UF · developer · designer · pixel artist');
+      addLine('out','aliases: Reptile Dysfunction (Group 77) · Group 30 · Stack Underflow · Snack Overflow');
+      addLine('out','status:  <span class="t-green">actively building + researching</span>');
+      addLine('out','hair:    <span class="t-coral">critically low</span>');
+      break;
+    case 'git':
+      if(args[0]==='log'){
+        addLine('out','<span class="t-green">commit</span> a3f9e1b — "finally fixed that one bug"');
+        addLine('out','<span class="t-green">commit</span> 9d2c4a0 — "it works (don\'t touch it)"');
+        addLine('out','<span class="t-green">commit</span> 7b1e8f3 — "WHY"');
+        addLine('out','<span class="t-green">commit</span> 2e5d9c1 — "okay I think I broke it worse"');
+        addLine('out','<span class="t-green">commit</span> c8a4d72 — "please work please work please work"');
+        addLine('out','<span class="t-green">commit</span> 4a7f2b8 — "initial commit"');
+      }else{addLine('err',`git: '${args.join(' ')}' — try git log`);}
+      break;
+    case 'gus':
+      addLine('out','&nbsp;&nbsp;🐊');
+      addLine('out','Gus the Gator says hello.');
+      addLine('out','he is very proud of you. and he is hand-drawn.');
+      break;
+    case 'sudo':
+      addLine('err','nice try. NJ does not grant sudo privileges.');break;
+    case 'rm':case 'rmdir':
+      addLine('err','rm: permission denied. I worked hard on this.');break;
+    case 'vim':case 'nano':case 'emacs':
+      addLine('warn',`${cmd} detected. closing terminal for your safety.`);
+      setTimeout(closeTerminal,1200);break;
+    case 'exit':case 'quit':case 'q':
+      addLine('out','goodbye 👋');setTimeout(closeTerminal,500);break;
+    case 'clear':
+      while(termBody.firstChild)termBody.removeChild(termBody.firstChild);break;
+    default:
+      if(['hangout','sudoku','lava','minesweeper','yeet_or_eat','gatoravl','cnt4007-networks-p2p'].includes(cmd)){
+        addLine('warn',`did you mean: cd projects/${cmd}?`);
+      }else{
+        addLine('err',`command not found: <strong>${trimmed}</strong> — try <span class="t-green">help</span>`);
+      }
+  }
+  termBody.scrollTop=termBody.scrollHeight;
+  termInput.value='';
+}
 
-    document.getElementById('sendBtn').textContent = './sending...';
+function openTerminal(){
+  termOverlay.classList.add('active');
+  setTimeout(()=>termInput.focus(),100);
+  if(termBody.children.length===0)bootTerminal();
+}
+function closeTerminal(){termOverlay.classList.remove('active');}
 
-    emailjs.send("service_njneered", "template_9q2fwln", {
-      from_name: name,
-      from_email: email,
-      subject: subject,
-      message: message,
-    }).then(() => {
-      status.textContent = '// message sent! talk soon :)';
-      status.className = 'form-status success';
-      document.getElementById('sendBtn').textContent = './send_message';
-      document.getElementById('from_name').value = '';
-      document.getElementById('from_email').value = '';
-      document.getElementById('subject').value = '';
-      document.getElementById('message').value = '';
-    }).catch(() => {
-      status.textContent = '// something went wrong. try again!';
-      status.className = 'form-status error';
-      document.getElementById('sendBtn').textContent = './send_message';
-    });
-  });
+function bootTerminal(){
+  const boot=[
+    {t:'out',h:'<span class="t-green">njneered portfolio v1.0</span> — interactive shell'},
+    {t:'out',h:'type <span class="t-green">help</span> for all commands'},
+    {t:'out',h:'explore: <span class="t-green">cd projects</span> · <span class="t-green">cd easter_eggs</span> · <span class="t-green">git log</span>'},
+  ];
+  let i=0;
+  (function next(){if(i<boot.length){addLine(boot[i].t,boot[i].h);i++;setTimeout(next,190);}})();
+}
+
+document.getElementById('term-fab').addEventListener('click',openTerminal);
+document.getElementById('term-close-btn').addEventListener('click',closeTerminal);
+termOverlay.addEventListener('click',e=>{if(e.target===termOverlay)closeTerminal();});
+termInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){runCommand(termInput.value);}
+  else if(e.key==='ArrowUp'){e.preventDefault();if(histIdx<history.length-1){histIdx++;termInput.value=history[histIdx];}}
+  else if(e.key==='ArrowDown'){e.preventDefault();if(histIdx>0){histIdx--;termInput.value=history[histIdx];}else{histIdx=-1;termInput.value='';}}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&termOverlay.classList.contains('active'))closeTerminal();});
+
+// ── CONTACT MODAL ─────────────────────────────────────────────────────
+document.getElementById('openContact').addEventListener('click',e=>{e.preventDefault();contactModal.classList.add('active');});
+document.getElementById('closeModal').addEventListener('click',()=>contactModal.classList.remove('active'));
+contactModal.addEventListener('click',e=>{if(e.target===contactModal)contactModal.classList.remove('active');});
+document.getElementById('sendBtn').addEventListener('click',()=>{
+  const name=document.getElementById('from_name').value.trim(),email=document.getElementById('from_email').value.trim(),
+        subject=document.getElementById('subject').value.trim(),message=document.getElementById('message').value.trim(),
+        status=document.getElementById('formStatus');
+  if(!name||!email||!subject||!message){status.textContent='// all fields required!';status.className='form-status error';return;}
+  document.getElementById('sendBtn').textContent='./sending...';
+  emailjs.send("service_njneered","template_9q2fwln",{from_name:name,from_email:email,subject,message})
+    .then(()=>{status.textContent='// message sent! talk soon :)';status.className='form-status success';document.getElementById('sendBtn').textContent='./send_message';['from_name','from_email','subject','message'].forEach(id=>document.getElementById(id).value='');})
+    .catch(()=>{status.textContent='// something went wrong. try again!';status.className='form-status error';document.getElementById('sendBtn').textContent='./send_message';});
+});
 </script>
-
 </body>
 </html>
