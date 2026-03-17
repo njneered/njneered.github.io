@@ -10,12 +10,12 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0e0b1a;
+    --bg: #000000;
     --green: #4ade80;
     --coral: #ff6b5b;
     --lavender: #c4b5fd;
-    --text: #f0eaff;
-    --muted: #8b7da8;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
     --border: rgba(196,181,253,0.15);
   }
 
@@ -34,8 +34,8 @@
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(74,222,128,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,222,128,0.05) 1px, transparent 1px);
     background-size: 32px 32px;
     pointer-events: none;
     z-index: 0;
@@ -49,7 +49,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2.5rem;
-    background: rgba(14,11,26,0.88);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(74,222,128,0.12);
   }
@@ -85,11 +85,18 @@
     display: flex;
     align-items: center;
     padding: 6rem 2.5rem 4rem;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
   }
 
-  .hero-inner { width: 100%; }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: 100%;
+  }
+
+  .hero-content { flex: 1; }
 
   .hero-tag {
     display: inline-block;
@@ -187,10 +194,41 @@
   .terminal-bar .t-green { color: var(--green); }
   .terminal-bar .t-coral { color: var(--coral); }
   .terminal-bar .t-lav { color: var(--lavender); }
-  .terminal-bar .t-blue {color: #60a5fa; }
-  .terminal-bar .t-yellow {color:gold}
+  .terminal-bar .t-blue { color: #60a5fa; }
+  .terminal-bar .t-yellow { color: gold; }
   .terminal-bar div { margin-bottom: 0.3rem; }
   .terminal-bar div:last-child { margin-bottom: 0; }
+
+  /* HERO PHOTO */
+  .hero-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+    animation: fadein 0.7s 0.2s ease both;
+  }
+
+  .hero-photo-wrap::after {
+    content: '[ nj.exe ]';
+    position: absolute;
+    bottom: -1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--green);
+    opacity: 0.7;
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-photo {
+    width: 220px;
+    height: 220px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px dashed rgba(74,222,128,0.5);
+    filter: grayscale(20%) contrast(1.05);
+    display: block;
+  }
 
   /* SHARED */
   .section-label {
@@ -222,8 +260,8 @@
   .tag-lav { color: var(--lavender); border-color: rgba(196,181,253,0.3); background: rgba(196,181,253,0.06); }
   .tag-teal { color: #5eead4; border-color: rgba(94,234,212,0.3); background: rgba(94,234,212,0.06); }
   .tag-pink { color: #f9a8d4; border-color: rgba(249,168,212,0.3); background: rgba(249,168,212,0.06); }
-  .tag-gold {color: #eed024; border-color: #7e7235; background: #110f03}
-  .tag-blue {color: #60a5fa; border-color: #194e8b; background: #172636}
+  .tag-gold { color: #eed024; border-color: #7e7235; background: #110f03; }
+  .tag-blue { color: #60a5fa; border-color: #194e8b; background: #172636; }
 
   /* ABOUT */
   #about {
@@ -425,6 +463,8 @@
     #hero, #about, #experience, #projects { padding-left: 1.25rem; padding-right: 1.25rem; }
     .about-grid { grid-template-columns: 1fr; }
     .exp-header { flex-direction: column; gap: 0.25rem; }
+    .hero-inner { flex-direction: column; gap: 2rem; }
+    .hero-photo { width: 160px; height: 160px; }
   }
 </style>
 </head>
@@ -443,23 +483,28 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-tag">// cs student + developer + designer</div>
-    <div class="prompt-line"><span>~/portfolio $</span> whoami</div>
-    <h1 class="hero-name">
-      <span class="accent">Hi, I'm </span>NJ<span class="cursor"></span>
-    </h1>
-    <p class="hero-subtitle">
-      Senior CS major at <em>University of Florida</em> — building apps, games, and tools
-      that are actually <em>fun to use</em>.
-    </p>
-    <div class="hero-links">
-      <a class="btn btn-primary" href="#projects">./see_my_work</a>
-      <a class="btn btn-ghost" href="https://github.com/njneered" target="_blank">github ↗</a>
+    <div class="hero-content">
+      <div class="hero-tag">// cs student + developer + designer</div>
+      <div class="prompt-line"><span>~/portfolio $</span> whoami</div>
+      <h1 class="hero-name">
+        <span class="accent">Hi, I'm </span>NJ<span class="cursor"></span>
+      </h1>
+      <p class="hero-subtitle">
+        Senior CS major at <em>University of Florida</em> — building apps, games, and tools
+        that are actually <em>fun to use</em>.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="#projects">./see_my_work</a>
+        <a class="btn btn-ghost" href="https://github.com/njneered" target="_blank">github ↗</a>
+      </div>
+      <div class="terminal-bar">
+        <div><span class="t-yellow">skills:</span> JavaScript · Java · Python · C++ · React · Figma · SQL · Even ARM (lol)</div>
+        <div><span class="t-coral">relevant courses:</span> Human-Computer Interaction · UX Design · Software Engineering · Data Structures & Algorithms · Database · Computer Organization · Operating Systems · Computer Networks · Algorithms</div>
+        <div><span class="t-blue">currently:</span> CS ed research @ the UF CS Everyone Center</div>
+      </div>
     </div>
-    <div class="terminal-bar">
-      <div><span class="t-yellow">skills:</span> JavaScript · Java · Python · C++ · React · Figma · SQL · Even ARM (lol)</div>
-      <div><span class="t-coral">relevant courses:</span> Human-Computer Interaction · UX Design · Software Engineering · Data Structures & Algorithms · Database · Computer Organization · Operating Systems · Computer Networks · Algorithms</div>
-      <div><span class="t-blue">currently:</span> CS ed research @ the UF CS Everyone Center </div>
+    <div class="hero-photo-wrap">
+      <img src="portfolio_pic.jpeg" alt="NJ Lacambra" class="hero-photo" />
     </div>
   </div>
 </section>
@@ -467,12 +512,12 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="section-label">// 01 — about</div>
-  <h2 class="section-title">i'm just a girl who is losing hair from this major</h2>
+  <h2 class="section-title">just a girl (who has lost so much hair from this major)</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm a CS senior at <em>UF</em> who loves building things at the intersection of design and functionality.  I also work as a <em>Research Assistant under Dr. Michael Johnson</em> at the <em>CS Everyone Center</em>, helping make CS and AI education more accessible for teachers across Florida.</p>
-      <p>Outside of code, I love the gym and found a solid community at my time within <em>Operations at UF Recreational Sports</em>, spilling tea at the <em>Tea Club</em>, and mentored high school students as a <em>Robotics Teaching Assistant</em> (ok that one's still about code but whatever), and aggressively stress-playing the <em>piano</em> (and crying) until I forget about the bug I can't debug (the one that contributes to my greying hair).</p>
-      <p>My focus is <em>UX and design.</em> How something feels matters just as much as how it works, so Figma is basically a second home at this point.</p>
+      <p>I'm a CS senior at <em>UF</em> who loves building things at the intersection of design and functionality. I also work as a <em>Research Assistant</em> under <em>Dr. Michael Johnson</em> at the <em>CS Everyone Center</em>, helping make CS and AI education more accessible for teachers across Florida.</p>
+      <p>Outside of code, I love the gym and found a solid community at my time within <em>Operations at UF Recreational Sports</em>, spilling tea at the <em>Tea Club</em>, mentored high school students as a <em>Robotics Teaching Assistant</em> (ok that one's still about code but whatever), and aggressively stress-playing the <em>piano</em> until I forget about whatever bug is currently responsible for my greying hair.</p>
+      <p>My focus is <em>UX and design</em>. How something feels matters just as much as how it works, so Figma is basically a second home at this point.</p>
     </div>
     <div class="skills-grid">
       <div class="skill-item">
@@ -512,10 +557,14 @@
         <div class="skill-label">// coursework</div>
         <div class="skill-tags">
           <span class="tag tag-teal">Computer Networks</span>
-          <span class="tag tag-teal">HCI</span>
-          <span class="tag tag-teal">Data Structures</span>
-          <span class="tag tag-teal">PLC</span>
+          <span class="tag tag-teal">Human-Computer Interaction</span>
+          <span class="tag tag-teal">UX Design</span>
+          <span class="tag tag-teal">Data Structures & Algorithms</span>
+          <span class="tag tag-teal">Programming Language Concepts</span>
           <span class="tag tag-teal">Software Engineering</span>
+          <span class="tag tag-teal">Database</span>
+          <span class="tag tag-teal">Computer Organization</span>
+
         </div>
       </div>
     </div>
@@ -534,7 +583,7 @@
         <div class="exp-date">Jan 2026 — Present</div>
       </div>
       <div class="exp-org">CS Everyone Center · University of Florida</div>
-      <div class="exp-desc">Working with a team dedicated to expanding CS and AI education access for teachers across Florida and beyond. Helping build tools and resources that make it easier for educators — regardless of subject area — to bring computer science into their classrooms and prepare students for tomorrow's workforce.</div>
+      <div class="exp-desc">Working with a team dedicated to expanding CS and AI education access for teachers across Florida and beyond. Helping build tools and resources that make it easier for educators to bring computer science into their classrooms and prepare students for tomorrow's workforce.</div>
     </div>
 
     <div class="exp-card">
@@ -543,7 +592,7 @@
         <div class="exp-date">Jan 2025 — Apr 2025</div>
       </div>
       <div class="exp-org">UFTeach · Loften High School</div>
-      <div class="exp-desc">Mentored high school students in debugging VEX robots for competition, troubleshot Python and C++ code side-by-side with them, and tried to make robotics feel less intimidating and more exciting. Got to watch students actually enjoy debugging — rare and beautiful. Promoted collaborative problem-solving throughout.</div>
+      <div class="exp-desc">Mentored high school students in debugging VEX robots for competition, troubleshot Python and C++ code side-by-side with them, and tried to make robotics feel less intimidating and more exciting.Watched kids go from "I hate this what am I doing" to "wait that actually worked even though I still don't know what I'm doing.".</div>
     </div>
 
     <div class="exp-card">
@@ -552,7 +601,7 @@
         <div class="exp-date">Aug 2024 — Jan 2026</div>
       </div>
       <div class="exp-org">UF Recreational Sports · Southwest Rec &amp; Student Rec</div>
-      <div class="exp-desc">Kept the gym running smoothly — facility ops, safety protocols, member support, and front desk. Also spent a lot of time at the gym outside of work hours, so it was a good deal all around.</div>
+      <div class="exp-desc">Ran daily facility operations across Southwest Rec and Student Rec by keeping things safe, welcoming, and running smoothly. Loved being part of a community that takes both fitness and people seriously.</div>
     </div>
 
   </div>
@@ -572,7 +621,7 @@
           <div class="project-type">Social Coordination Platform</div>
         </div>
       </div>
-      <div class="project-desc">A social scheduling app that makes planning hangouts actually easy — shared calendars, event planning, and a host/invite flow that feels native and fun. Built with SwiftUI and real-time data binding.</div>
+      <div class="project-desc">A social scheduling app that makes planning hangouts actually easy. Shared calendars, event planning, and a host/invite flow that feels native and fun. Built with SwiftUI and real-time data binding.</div>
       <div class="project-stack">
         <span class="tag tag-green">SwiftUI</span>
         <span class="tag tag-green">iOS</span>
@@ -592,7 +641,7 @@
           <div class="project-type">UX Design Case Study</div>
         </div>
       </div>
-      <div class="project-desc">My teammate and I picked OurTime — a dating app for adults 50+ — because we found it hilariously bad and a genuinely great design challenge. Turns out designing for elderly romance is both heartwarming and technically demanding. We love love. Full Figma redesign grounded in usability research, accessibility, and a whole lot of empathy.</div>
+      <div class="project-desc">My teammate and I picked OurTime (a dating app for adults 50+) because we found it hilarious and a great design challenge at the same time. Full Figma redesign grounded in usability research, and accessibility.</div>
       <div class="project-stack">
         <span class="tag tag-pink">Figma</span>
         <span class="tag tag-pink">UX Research</span>
@@ -609,7 +658,7 @@
           <div class="project-type">Food Review Web App</div>
         </div>
       </div>
-      <div class="project-desc">A chaotic, meme-friendly food review app for college students — rate meals with the same energy you rate memes. Built for hot takes, food therapy, and midnight taco thoughts.</div>
+      <div class="project-desc">A chaotic, meme-friendly food review app where UF students rate meals with the same energy they rate memes.</div>
       <div class="project-stack">
         <span class="tag tag-coral">React</span>
         <span class="tag tag-coral">Flask</span>
@@ -663,7 +712,7 @@
 </section>
 
 <footer>
-  <p>built by nj — <a href="https://github.com/njneered">github.com/njneered</a></p>
+  <p>built by <em>nj</em> bc who else— <a href="https://github.com/njneered">github.com/njneered</a></p>
 </footer>
 
 <script>
