@@ -284,6 +284,19 @@
 
 <footer><p>built by <em>NJ</em> bc who else? <a href="https://github.com/njneered">github.com/njneered</a></p></footer>
 
+<!-- neji easter egg -->
+<img id="neji" src="neji.png" alt="" style="
+  position:fixed;
+  width:52px;
+  height:52px;
+  object-fit:contain;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.4s ease;
+  z-index:999;
+  image-rendering:pixelated;
+" />
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
 emailjs.init("h3DhotJkzLyzETOJC");
@@ -306,6 +319,64 @@ document.querySelectorAll('.project-card-outer').forEach(outer=>{
     if(!was)card.classList.add('flipped');
   });
 });
+
+// ── NEJI EASTER EGG ──────────────────────────────────────────────────
+(function(){
+  const neji = document.getElementById('neji');
+  let visible = false;
+  let cooldown = false;
+
+  function showNeji() {
+    if (visible || cooldown) return;
+    const side = Math.floor(Math.random() * 4);
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let x, y;
+    if (side === 0) {        // bottom
+      x = Math.random() * (vw - 80) + 20;
+      y = vh - 60;
+    } else if (side === 1) { // right
+      x = vw - 60;
+      y = Math.random() * (vh - 120) + 60;
+    } else if (side === 2) { // left
+      x = 8;
+      y = Math.random() * (vh - 120) + 60;
+    } else {                 // top
+      x = Math.random() * (vw - 80) + 20;
+      y = 70;
+    }
+    neji.style.left = x + 'px';
+    neji.style.top  = y + 'px';
+    neji.style.opacity = '1';
+    visible = true;
+    setTimeout(() => {
+      neji.style.opacity = '0';
+      visible = false;
+      cooldown = true;
+      setTimeout(() => { cooldown = false; }, 6000);
+    }, 2200);
+  }
+
+  // smaller on mobile
+  if (window.innerWidth < 600) {
+    neji.style.width  = '36px';
+    neji.style.height = '36px';
+  }
+
+  let lastScroll = 0;
+  let scrollCount = 0;
+  window.addEventListener('scroll', () => {
+    const now = Date.now();
+    if (now - lastScroll > 100) {
+      scrollCount++;
+      lastScroll = now;
+      if (scrollCount >= 5 && Math.random() < 0.3) {
+        scrollCount = 0;
+        showNeji();
+      }
+    }
+  }, { passive: true });
+})();
 
 // ── PHOTO SLIDESHOW ───────────────────────────────────────────────────
 const photos = [
