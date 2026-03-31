@@ -31,7 +31,7 @@
       <div class="hero-links">
         <a class="btn btn-primary" href="#projects">./see_my_work</a>
         <a class="btn btn-ghost"  href="https://github.com/njneered" target="_blank">github ↗</a>
-        <a class="btn btn-resume" href="NJLacambra2026.pdf" target="_blank">resume.pdf ↗</a>
+        <a class="btn btn-resume" href="NJL2026.pdf" target="_blank">resume.pdf ↗</a>
         <a class="btn btn-strava" href="https://strava.app.link/N5tc4BDFA1b" target="_blank">🏃 strava ↗</a>
       </div>
       <div class="terminal-bar">
@@ -535,7 +535,7 @@ const FS={
       'bio.txt':{type:'file',content:'CS senior @ UF. Developer, designer, pixel artist.\nResearch Assistant @ CS Everyone Center.\nCurrently losing hair over compilers and loving every second.'},
     }},
     contact:{type:'dir',children:{
-      'links.txt':{type:'file',content:'GitHub:  https://github.com/njneered\nStrava:  https://strava.app.link/N5tc4BDFA1b\nResume:  NJLacambra2026.pdf'},
+      'links.txt':{type:'file',content:'GitHub:  https://github.com/njneered\nStrava:  https://strava.app.link/N5tc4BDFA1b\nResume:  NJL2026.pdf'},
     }},
     easter_eggs:{type:'dir',children:{
       'gus.txt':{type:'file',content:'🐊 Gus the Gator.\nYes I made him. Yes I love him. 32x32 pixels, zero regrets.\nStar of Swamp Sudoku AND The Floor is Lava.\nProbably the most important thing I\'ve built.'},
@@ -701,7 +701,7 @@ function runCommand(raw){
       setTimeout(()=>window.open('https://github.com/njneered','_blank'),400);break;
     case 'resume':
       addLine('out','opening resume.pdf ↗');
-      setTimeout(()=>window.open('NJLacambra2026.pdf','_blank'),400);break;
+      setTimeout(()=>window.open('NJL2026.pdf','_blank'),400);break;
     case 'strava':
       addLine('out','🏃 opening strava ... (yes I actually go outside)');
       setTimeout(()=>window.open('https://strava.app.link/N5tc4BDFA1b','_blank'),400);break;
